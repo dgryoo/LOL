@@ -4,10 +4,9 @@ public abstract class AttackableThing extends Thing {
 
 
 
-    AttackableThing(String name, int health, Team team, int armor, int magicArmor, int power, int attackRange) {
-        super(name, health, team, armor, magicArmor);
-        this.power = power;
-        this.attackRange = attackRange;
+    AttackableThing(Team team) {
+        super(team);
+
 
 
     }
@@ -17,7 +16,7 @@ public abstract class AttackableThing extends Thing {
             System.out.println("같은팀을 공격할 수 없습니다.");
         } else {
 
-        System.out.println(this.name + "이(가) " + this.power + "의 공격력으로 " + thing.name + " 을 공격했습니다." );
+        System.out.println(this.tName + "이(가) " + this.power + "의 공격력으로 " + thing.tName + " 을 공격했습니다." );
         thing.attacked(this.power);
 
         }

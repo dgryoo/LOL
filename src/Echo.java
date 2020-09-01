@@ -1,19 +1,34 @@
-public abstract class Hero extends AttackableThing {
+public class Echo extends Hero {
 
+    String tName = "Echo";
+    int health = 150;
+    Team team;
+    int armor = 15;
+    int magicArmor = 15;
+    int power = 30;
+    int attackRange = 5;
     int level = 1;
     int experience = 0;
 
-    Hero(Team team) {
+
+    Echo(Team team) {
         super(team);
+
 
     }
 
-    abstract public void skill();
+    @Override
+    public void skill() {
+        System.out.println("skill 사용");
+    }
 
-    abstract public void ultimateSkill();
+    @Override
+    public void ultimateSkill() {
+        System.out.println("ultimateSkill 사용");
+    }
 
+    @Override
     public void status() {
-
         System.out.println("name : " + tName);
         System.out.println("health : " + health);
         System.out.println("armor : " + armor);
@@ -21,11 +36,6 @@ public abstract class Hero extends AttackableThing {
         System.out.println("power : " + power);
         System.out.println("level : " + level);
         System.out.println("experience : " + experience);
-
-    }
-
-    public void seleted(String gamer) {
-        System.out.println(gamer + "가 " + this.tName + "를 선택했습니다");
     }
 
 }
