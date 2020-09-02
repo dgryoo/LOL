@@ -4,12 +4,42 @@ public class Game {
 
     public static void main(String[] args) {
 
-        Gamer gamer = new Gamer("ryoo");
+        Gamer gamer1 = new Gamer("ryoo");
+        Gamer gamer2 = new Gamer("ryoo");
 
-        gamer.setHero(new Ash(Team.BLUE));
+        List<Gamer> listBlue = new ArrayList<Gamer>();
+        List<Gamer> listRed = new ArrayList<Gamer>();
 
-        gamer.getHero().skill();
-        gamer.getHero().status();
+        gamer1.addHero(new Ash(Team.BLUE));
+        gamer2.addHero(new Ash(Team.RED));
+
+        listBlue.add(gamer1);
+        listRed.add(gamer2);
+
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("팀을 선택하세요");
+            System.out.println("1. BLUE");
+            System.out.println("2. RED");
+            int teamSelect = scanner.nextInt();
+            if (teamSelect == 1) {
+                System.out.println("영웅을 선택하세요");
+                for (Gamer gamer : listBlue) {
+                    for (Hero hero : gamer.getHeroList()) {
+                        for (int i = 0; i < gamer.getHeroList().size(); i++) {
+                            System.out.println(i + 1 + ". " + hero.gettName());
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+
+    }
+
 
         /*System.out.println("Ash Hero Test---------------------------------------------------");
         Ash ash = new Ash(Team.RED);
@@ -17,9 +47,8 @@ public class Game {
         System.out.println("Ash Hero Test---------------------------------------------------");*/
 
 
-
-        //Ash ash = new Ash(Team.RED);
-        //System.out.println(ash.tName);
+    //Ash ash = new Ash(Team.RED);
+    //System.out.println(ash.tName);
 
 
         /*Hero hero1 = new Ash("user1", Team.RED);
@@ -39,5 +68,5 @@ public class Game {
         hero1.status();*/
 
 
-    }
 }
+

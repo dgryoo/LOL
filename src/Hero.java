@@ -1,10 +1,13 @@
 public abstract class Hero extends AttackableThing {
 
-    int level = 1;
-    int experience = 0;
+    private int level;
+    private int experience;
 
-    Hero(Team team) {
-        super(team);
+
+    public Hero(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange) {
+        super(tName, health, team, armor, magicArmor, power, attackRange);
+        this.level = 1;
+        this.experience = 0;
 
     }
 
@@ -12,20 +15,13 @@ public abstract class Hero extends AttackableThing {
 
     abstract public void ultimateSkill();
 
+    @Override
     public void status() {
 
-        System.out.println("name : " + tName);
-        System.out.println("health : " + health);
-        System.out.println("armor : " + armor);
-        System.out.println("magicArmor : " + magicArmor);
-        System.out.println("power : " + power);
+        super.status();
         System.out.println("level : " + level);
         System.out.println("experience : " + experience);
 
-    }
-
-    public void seleted(String gamer) {
-        System.out.println(gamer + "가 " + this.tName + "를 선택했습니다");
     }
 
 }

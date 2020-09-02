@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Gamer {
 
-    String uName;
-    Hero hero;
+    private String uName;
+    private List<Hero> heroList = new ArrayList();
     /*static {
         System.out.println(uName + "님이 " +hero.tName + " 을 선택하셨습니다.");
     }*/
@@ -12,13 +15,12 @@ public class Gamer {
     }
 
 
-    public void setHero(Hero hero) {
-        this.hero = hero;
-        hero.seleted(this.uName);
-
+    public void addHero(Hero hero) {
+        heroList.add(hero);
+        System.out.println(uName + "이 " + hero.gettName() + "를 선택했습니다");
     }
 
-    public Hero getHero() {
-        return this.hero;
+    public List<Hero> getHeroList() {
+        return this.heroList;
     }
 }
