@@ -13,7 +13,7 @@ public abstract class AttackableThing extends Thing {
         if (getTeam() == thing.getTeam()) {
             System.out.println("같은팀을 공격할 수 없습니다.");
         } else {
-            System.out.println(gettName() + "이(가) " + power + "의 공격력으로 " + thing.gettName() + " 을 공격했습니다.");
+            System.out.println(getTeam() + "팀의 " +gettName() + "이(가) " + power + "의 공격력으로 " + thing.getTeam() + "팀의 " + thing.gettName() + "을 공격했습니다.");
             thing.attacked(power);
 
         }

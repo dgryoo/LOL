@@ -17,8 +17,8 @@ public abstract class Thing {
 
     public void attacked(int power) {
         health = health - (power - armor);
-        System.out.println(tName + "이(가)" + (power-armor) + " 의 피해를 받았습니다.");
-        System.out.println(tName + "의 체력은 " + health + " 남았습니다.");
+        System.out.println(team + "팀의 " + tName + "이(가)" + (power-armor) + " 의 피해를 받았습니다.");
+        System.out.println(team + "팀의 " + tName + "의 체력은 " + health + " 남았습니다.");
     }
 
     public void status() {

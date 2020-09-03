@@ -23,4 +23,8 @@ public class Gamer {
     public List<Hero> getHeroList() {
         return this.heroList;
     }
+
+    public String getuName() {
+        return uName;
+    }
 }
