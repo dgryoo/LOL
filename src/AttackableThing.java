@@ -1,3 +1,5 @@
+
+
 public abstract class AttackableThing extends Thing {
     private int power;
     private int attackRange;

@@ -3,13 +3,15 @@ import java.util.*;
 public class Game {
 
     public static void main(String[] args) {
-        
+
         Scanner scanner = new Scanner(System.in);
 
         List<String> heroNameList = new ArrayList();
 
         // 영웅목록 나중에 영웅 개요 추가
         heroNameList.add("Ash");
+        heroNameList.add("Echo");
+        heroNameList.add("Sona");
 
 
         Gamer gamer1 = new Gamer("gamer1");
@@ -19,13 +21,11 @@ public class Game {
         List<Gamer> listBlue = new ArrayList<Gamer>();*/
 
 
-
-
         System.out.println(gamer1.getHeroList().size());
         System.out.println(gamer1.getuName() + "님 영웅을 선택해주세요");
 
         // gamer1 영웅 선택
-        while (gamer1.getHeroList().size() < 1 ) {
+        while (gamer1.getHeroList().size() < 3) {
             System.out.println("------------------------------------------");
             for (String name : heroNameList) {
                 System.out.println("- " + name);
@@ -36,7 +36,15 @@ public class Game {
             String heroAdd = scanner.next();
 
             switch (heroAdd) {
-                case "Ash" : gamer1.addHero(new Ash(Team.BLUE));
+                case "Ash":
+                    gamer1.addHero(new Ash(Team.BLUE));
+                    break;
+                case "Echo":
+                    gamer1.addHero(new Echo(Team.BLUE));
+                    break;
+                case "Sona":
+                    gamer1.addHero(new Sona(Team.BLUE));
+                    break;
                     //다른영웅들추가
             }
 
@@ -45,7 +53,7 @@ public class Game {
         System.out.println(gamer2.getuName() + "님 영웅을 선택해주세요");
 
         // gamer2 영웅 선택
-        while (gamer2.getHeroList().size() < 1 ) {
+        while (gamer2.getHeroList().size() < 3) {
             System.out.println("------------------------------------------");
             for (String name : heroNameList) {
                 System.out.println("- " + name);
@@ -55,7 +63,15 @@ public class Game {
             String heroAdd = scanner.next();
 
             switch (heroAdd) {
-                case "Ash" : gamer2.addHero(new Ash(Team.RED));
+                case "Ash":
+                    gamer2.addHero(new Ash(Team.RED));
+                    break;
+                case "Echo":
+                    gamer2.addHero(new Echo(Team.RED));
+                    break;
+                case "Sona":
+                    gamer2.addHero(new Sona(Team.RED));
+                    break;
                     //다른영웅들추가
             }
 
@@ -70,10 +86,10 @@ public class Game {
         System.out.println("영웅을 선택해주세요");
         // 영웅선택
         for (Hero hero : gamer1.getHeroList()) {
-            System.out.println((gamer1.getHeroList().indexOf(hero)+1) + ". " + hero.gettName());
+            System.out.println((gamer1.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
         }
         int selectHero = scanner.nextInt();
-        Hero recentHero = gamer1.getHeroList().get(selectHero-1);
+        Hero recentHero = gamer1.getHeroList().get(selectHero - 1);
 
         // 영웅의 행동 선택
         System.out.println(recentHero.gettName() + "는 무엇을 할까요?");
@@ -86,14 +102,14 @@ public class Game {
         int heroAction = scanner.nextInt();
 
         switch (heroAction) {
-            case 1 :
+            case 1:
                 System.out.println("누구를 공격할까요?");
                 for (Hero hero : gamer2.getHeroList()) {
-                    System.out.println((gamer2.getHeroList().indexOf(hero)+1) + ". " + hero.gettName());
+                    System.out.println((gamer2.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
                 }
                 int target = scanner.nextInt();
 
-                recentHero.attack(gamer2.getHeroList().get(target-1));
+                recentHero.attack(gamer2.getHeroList().get(target - 1));
 
 
         }
