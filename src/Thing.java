@@ -18,7 +18,6 @@ public abstract class Thing {
         this.y = y;
 
 
-
     }
 
     public void attacked(int power) {
@@ -34,6 +33,10 @@ public abstract class Thing {
         System.out.println("armor : " + armor);
         System.out.println("magicArmor : " + magicArmor);
 
+    }
+
+    public void dead() {
+        System.out.println(team + "팀의 " + tName + "이(가)" + " 죽었습니다");
     }
 
     public String gettName() {
@@ -56,9 +59,13 @@ public abstract class Thing {
         return magicArmor;
     }
 
-    public int getX() { return x; }
+    public int getX() {
+        return x;
+    }
 
-    public int getY() { return y; }
+    public int getY() {
+        return y;
+    }
 
     public void setX(int x) {
         this.x = x;

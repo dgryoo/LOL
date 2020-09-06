@@ -1,6 +1,3 @@
-import Inter.Movable;
-import Inter.Revivable;
-
 public abstract class Hero extends AttackableThing implements Movable, Revivable {
 
     private int level;
