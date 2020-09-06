@@ -1,3 +1,5 @@
+package AbsClass;
+
 public enum Team {
 
     RED,

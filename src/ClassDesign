@@ -1,20 +1,20 @@
 @ 인터페이스
 
-- Attackable attack(Thing thing)
-- Revivable revive()
-- Movable move(int direction)
-- Skillable( 아직 구체적으로 생각 못했음)
+- Inter.Attackable attack(AbsClass.Thing thing)
+- Inter.Revivable revive()
+- Inter.Movable move(int direction)
+- Inter.Skillable( 아직 구체적으로 생각 못했음)
 
 @ 추상클래스
 
-- Athing extends Thing implements Attackable - TurretTower
-- Rthing extends Thing implements Revivable - SuppressTower
-- Sthing extends Thing implements Skillable - CommandTower
-- AMThing extends AThing implements Movable - Minion
-- ARThing extends AThing implements Revivable - 없음
-- ARSTHing extends ARTHing implements Skillable - Dragon
-- ARMThing extends ARThing implements Movable - Wolf
-- ARMSThing extends ARMThing implements Skillable - Hero, Golem
+- Athing extends AbsClass.Thing implements Inter.Attackable - TurretTower
+- Rthing extends AbsClass.Thing implements Inter.Revivable - SuppressTower
+- Sthing extends AbsClass.Thing implements Inter.Skillable - CommandTower
+- AbsClass.AMThing extends AbsClass.AThing implements Inter.Movable - Minion
+- AbsClass.ARThing extends AbsClass.AThing implements Inter.Revivable - 없음
+- ARSTHing extends ARTHing implements Inter.Skillable - Dragon
+- AbsClass.ARMThing extends AbsClass.ARThing implements Inter.Movable - Wolf
+- AbsClass.ARMSThing extends AbsClass.ARMThing implements Inter.Skillable - Hero.Hero, Golem
 
 A <- AM
   <- AR <- ARS <- ARMS
@@ -25,27 +25,27 @@ S
 
 @ 클래스
 
-- CommandTower extends Skillable
+- CommandTower extends Inter.Skillable
     본진타워 터지면 게임끝남
 
-- SuppressTower extends Revivable
+- SuppressTower extends Inter.Revivable
     죽었을시에 CommandTower에서 슈퍼미니언이 생성됨 일정시간 후 부활
 
-- TurretTower extends AThing
+- TurretTower extends AbsClass.AThing
     공격가능한 타워
 
-- Minion extends AMThing
+- Minion extends AbsClass.AMThing
     CommandTower에서 생성하는 쫄따구
 
-- Hero extends ARMSThing
+- Hero.Hero extends AbsClass.ARMSThing
 
-- Wolf extends ARMThing
+- Wolf extends AbsClass.ARMThing
     스킬 못쓰는 중립 몬스터
 
 - Golem extends ARMSTHing
     스킬쓰는 중립 몬스터
 
-- Dragon extends ARSThing
+- Dragon extends AbsClass.ARSThing
     보스중립몬스터 움직이지 못함
 
 

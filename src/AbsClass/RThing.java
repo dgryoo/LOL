@@ -1,3 +1,7 @@
+package AbsClass;
+
+import Inter.Revivable;
+
 public abstract class RThing extends Thing implements Revivable {
 
     public RThing(String tName, int health, Team team, int armor, int magicArmor, int x, int y) {

@@ -1,3 +1,7 @@
+package AbsClass;
+
+import Inter.Movable;
+
 public abstract class ARMSThing extends ARSThing implements Movable {
 
 

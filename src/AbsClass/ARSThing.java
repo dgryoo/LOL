@@ -1,3 +1,7 @@
+package AbsClass;
+
+import Inter.Skillable;
+
 public class ARSThing extends ARThing implements Skillable {
 
     public ARSThing(String tName, int health, Team team, int armor, int magicArmor, int x, int y, int power, int attackRange) {

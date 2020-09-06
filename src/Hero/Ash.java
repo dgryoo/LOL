@@ -1,7 +1,12 @@
-public class Sona extends Hero {
+package Hero;
 
-    public Sona(Team team) {
-        super("Sona", 80, team, 10, 30, 1,1,15, 20);
+import AbsClass.Team;
+import Hero.Hero;
+
+public class Ash extends Hero {
+
+    public Ash(Team team) {
+        super("Hero.Ash", 100, team, 10, 10, 10, 10, 20, 20);
 
     }
 

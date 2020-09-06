@@ -1,3 +1,5 @@
+import Hero.Hero;
+
 import java.util.ArrayList;
 import java.util.List;
 

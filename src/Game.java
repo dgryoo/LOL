@@ -1,3 +1,6 @@
+import AbsClass.Team;
+import Hero.*;
+
 import java.util.*;
 
 public class Game {
@@ -9,9 +12,9 @@ public class Game {
         List<String> heroNameList = new ArrayList();
 
         // 영웅목록 나중에 영웅 개요 추가
-        heroNameList.add("Ash");
-        heroNameList.add("Echo");
-        heroNameList.add("Sona");
+        heroNameList.add("Hero.Ash");
+        heroNameList.add("Hero.Echo");
+        heroNameList.add("Hero.Sona");
 
 
         Gamer gamer1 = new Gamer("gamer1");
@@ -36,13 +39,13 @@ public class Game {
             String heroAdd = scanner.next();
 
             switch (heroAdd) {
-                case "Ash":
+                case "Hero.Ash":
                     gamer1.addHero(new Ash(Team.BLUE));
                     break;
-                case "Echo":
+                case "Hero.Echo":
                     gamer1.addHero(new Echo(Team.BLUE));
                     break;
-                case "Sona":
+                case "Hero.Sona":
                     gamer1.addHero(new Sona(Team.BLUE));
                     break;
                     //다른영웅들추가
@@ -63,13 +66,13 @@ public class Game {
             String heroAdd = scanner.next();
 
             switch (heroAdd) {
-                case "Ash":
+                case "Hero.Ash":
                     gamer2.addHero(new Ash(Team.RED));
                     break;
-                case "Echo":
+                case "Hero.Echo":
                     gamer2.addHero(new Echo(Team.RED));
                     break;
-                case "Sona":
+                case "Hero.Sona":
                     gamer2.addHero(new Sona(Team.RED));
                     break;
                     //다른영웅들추가
@@ -124,7 +127,7 @@ public class Game {
             if (teamSelect == 1) {
                 System.out.println("영웅을 선택하세요");
                 for (Gamer gamer : listBlue) {
-                    for (Hero hero : gamer.getHeroList()) {
+                    for (Hero.Hero hero : gamer.getHeroList()) {
                         for (int i = 0; i < gamer.getHeroList().size(); i++) {
                             System.out.println(i + 1 + ". " + hero.gettName());
                         }
@@ -139,22 +142,22 @@ public class Game {
     }
 
 
-        /*System.out.println("Ash Hero Test---------------------------------------------------");
-        Ash ash = new Ash(Team.RED);
+        /*System.out.println("Hero.Ash Hero.Hero Test---------------------------------------------------");
+        Hero.Ash ash = new Hero.Ash(AbsClass.Team.RED);
         System.out.println(ash.tName);
-        System.out.println("Ash Hero Test---------------------------------------------------");*/
+        System.out.println("Hero.Ash Hero.Hero Test---------------------------------------------------");*/
 
 
-    //Ash ash = new Ash(Team.RED);
+    //Hero.Ash ash = new Hero.Ash(AbsClass.Team.RED);
     //System.out.println(ash.tName);
 
 
-        /*Hero hero1 = new Ash("user1", Team.RED);
-        Hero hero2 = new Ash("user2", Team.RED);
-        Hero hero3 = new Ash("user3", Team.BLUE);
-        Hero hero4 = new Ash("user4", Team.BLUE);
+        /*Hero.Hero hero1 = new Hero.Ash("user1", AbsClass.Team.RED);
+        Hero.Hero hero2 = new Hero.Ash("user2", AbsClass.Team.RED);
+        Hero.Hero hero3 = new Hero.Ash("user3", AbsClass.Team.BLUE);
+        Hero.Hero hero4 = new Hero.Ash("user4", AbsClass.Team.BLUE);
 
-        Map<String, Hero> heroMap = new HashMap<String, Hero>();
+        Map<String, Hero.Hero> heroMap = new HashMap<String, Hero.Hero>();
 
         heroMap.put("ryoo1", hero1);
         heroMap.put("ryoo2", hero2);

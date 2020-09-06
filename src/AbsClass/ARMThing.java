@@ -1,30 +1,16 @@
-public abstract class Hero extends AttackableThing implements Movable, Revivable {
+package AbsClass;
 
-    private int level;
-    private int experience;
+import Inter.Movable;
 
+public abstract class ARMThing extends ARThing implements Movable {
 
-    public Hero(String tName, int health, Team team, int armor, int magicArmor, int x, int y, int power, int attackRange) {
+    public ARMThing(String tName, int health, Team team, int armor, int magicArmor, int x, int y, int power, int attackRange) {
         super(tName, health, team, armor, magicArmor, x, y, power, attackRange);
-        this.level = 1;
-        this.experience = 0;
-    }
-
-    abstract public void skill();
-
-    abstract public void ultimateSkill();
-
-    @Override
-    public void status() {
-
-        super.status();
-        System.out.println("level : " + level);
-        System.out.println("experience : " + experience);
-
     }
 
     @Override
     public void move(int direction) {
+
         System.out.println("움직일 방향을 선택하세요");
         switch (direction) {
             case 1:
@@ -55,17 +41,6 @@ public abstract class Hero extends AttackableThing implements Movable, Revivable
                 this.setX(this.getX() + 1);
                 this.setY(this.getY() + 1);
                 break;
-
         }
-
-
     }
-
-    @Override
-    public void revive() {
-
-    }
-
 }
-
-

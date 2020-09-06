@@ -1,15 +1,15 @@
-public abstract class AThing extends Thing implements Attackable{
-    int power;
-    int attackRange;
+package AbsClass;
 
+public abstract class AttackableThing extends Thing {
+    private int power;
+    private int attackRange;
 
-    public AThing(String tName, int health, Team team, int armor, int magicArmor, int x, int y, int power, int attackRange) {
+    public AttackableThing(String tName, int health, Team team, int armor, int magicArmor, int x, int y, int power, int attackRange) {
         super(tName, health, team, armor, magicArmor, x, y);
         this.power = power;
-        this. attackRange = attackRange;
+        this.attackRange = attackRange;
     }
 
-    @Override
     public void attack(Thing thing) {
         if (getTeam() == thing.getTeam()) {
             System.out.println("같은팀을 공격할 수 없습니다.");
@@ -21,19 +21,13 @@ public abstract class AThing extends Thing implements Attackable{
         }
     }
 
-    public int getPower() {
-        return power;
+
+    @Override
+    public void status() {
+
+        super.status();
+        System.out.println("power : " + power);
+
     }
 
-    public void setPower(int power) {
-        this.power = power;
-    }
-
-    public int getAttackRange() {
-        return attackRange;
-    }
-
-    public void setAttackRange(int attackRange) {
-        this.attackRange = attackRange;
-    }
 }

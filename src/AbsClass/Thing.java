@@ -1,3 +1,5 @@
+package AbsClass;
+
 public abstract class Thing {
     private String tName;
     private int health;

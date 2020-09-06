@@ -1,3 +1,7 @@
+package AbsClass;
+
+import Inter.Revivable;
+
 public abstract class ARThing extends AThing implements Revivable {
 
     public ARThing(String tName, int health, Team team, int armor, int magicArmor, int x, int y, int power, int attackRange) {

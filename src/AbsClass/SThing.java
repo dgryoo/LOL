@@ -1,3 +1,7 @@
+package AbsClass;
+
+import Inter.Skillable;
+
 public abstract class SThing extends Thing implements Skillable {
 
     public SThing(String tName, int health, Team team, int armor, int magicArmor, int x, int y) {
