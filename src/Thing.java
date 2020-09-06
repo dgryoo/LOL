@@ -4,20 +4,26 @@ public abstract class Thing {
     private Team team;
     private int armor;
     private int magicArmor;
+    private int x;
+    private int y;
 
-    Thing(String tName,int health, Team team, int armor, int magicArmor) {
+
+    Thing(String tName, int health, Team team, int armor, int magicArmor, int x, int y) {
         this.tName = tName;
         this.health = health;
         this.team = team;
         this.armor = armor;
         this.magicArmor = magicArmor;
+        this.x = x;
+        this.y = y;
+
 
 
     }
 
     public void attacked(int power) {
         health = health - (power - armor);
-        System.out.println(team + "팀의 " + tName + "이(가)" + (power-armor) + " 의 피해를 받았습니다.");
+        System.out.println(team + "팀의 " + tName + "이(가)" + (power - armor) + " 의 피해를 받았습니다.");
         System.out.println(team + "팀의 " + tName + "의 체력은 " + health + " 남았습니다.");
     }
 
@@ -48,5 +54,17 @@ public abstract class Thing {
 
     public int getMagicArmor() {
         return magicArmor;
+    }
+
+    public int getX() { return x; }
+
+    public int getY() { return y; }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }
