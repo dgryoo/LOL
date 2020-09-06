@@ -1,0 +1,53 @@
+@ 인터페이스
+
+- Attackable attack(Thing thing)
+- Revivable revive()
+- Movable move(int direction)
+- Skillable( 아직 구체적으로 생각 못했음)
+
+@ 추상클래스
+
+- Athing extends Thing implements Attackable - TurretTower
+- Rthing extends Thing implements Revivable - SuppressTower
+- Sthing extends Thing implements Skillable - CommandTower
+- AMThing extends AThing implements Movable - Minion
+- ARThing extends AThing implements Revivable - 없음
+- ARSTHing extends ARTHing implements Skillable - Dragon
+- ARMThing extends ARThing implements Movable - Wolf
+- ARMSThing extends ARMThing implements Skillable - Hero, Golem
+
+A <- AM
+  <- AR <- ARS <- ARMS
+        <- ARM
+R
+
+S
+
+@ 클래스
+
+- CommandTower extends Skillable
+    본진타워 터지면 게임끝남
+
+- SuppressTower extends Revivable
+    죽었을시에 CommandTower에서 슈퍼미니언이 생성됨 일정시간 후 부활
+
+- TurretTower extends AThing
+    공격가능한 타워
+
+- Minion extends AMThing
+    CommandTower에서 생성하는 쫄따구
+
+- Hero extends ARMSThing
+
+- Wolf extends ARMThing
+    스킬 못쓰는 중립 몬스터
+
+- Golem extends ARMSTHing
+    스킬쓰는 중립 몬스터
+
+- Dragon extends ARSThing
+    보스중립몬스터 움직이지 못함
+
+
+
+
