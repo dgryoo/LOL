@@ -38,6 +38,7 @@ public class Game {
 
             switch (heroAdd) {
                 case "Ash":
+                    //gamer1.addHero(Ash.getInstance(Team.BLUE));
                     gamer1.addHero(new Ash(Team.BLUE));
                     break;
                 case "Echo":
@@ -46,7 +47,10 @@ public class Game {
                 case "Sona":
                     gamer1.addHero(new Sona(Team.BLUE));
                     break;
-                    //다른영웅들추가
+                //다른영웅들추가
+
+                default:
+                    System.out.println("영웅의 이름을 정확히 입력해주세요.");
             }
 
         }
@@ -73,47 +77,65 @@ public class Game {
                 case "Sona":
                     gamer2.addHero(new Sona(Team.RED));
                     break;
-                    //다른영웅들추가
+                //다른영웅들추가
+                default:
+                    System.out.println("영웅의 이름을 정확히 입력해주세요.");
             }
 
         }
 
         // 게임시작
         System.out.println("게임이 시작됩니다.");
+        while (true) {
+            // 돌아가면서 한턴씩 실행
+            System.out.println(gamer1.getuName() + "님의 차례입니다.");
 
-        // 돌아가면서 한턴씩 실행
-        System.out.println(gamer1.getuName() + "님의 차례입니다.");
+            System.out.println("영웅을 선택해주세요");
+            // 영웅선택
+            for (Hero hero : gamer1.getHeroList()) {
+                System.out.println((gamer1.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
+            }
+            int selectHero = scanner.nextInt();
+            Hero recentHero = gamer1.getHeroList().get(selectHero - 1);
 
-        System.out.println("영웅을 선택해주세요");
-        // 영웅선택
-        for (Hero hero : gamer1.getHeroList()) {
-            System.out.println((gamer1.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
-        }
-        int selectHero = scanner.nextInt();
-        Hero recentHero = gamer1.getHeroList().get(selectHero - 1);
+            // 영웅의 행동 선택
+            System.out.println(recentHero.gettName() + "는 무엇을 할까요?");
+            System.out.println("1. 공격");
+            System.out.println("2. 스킬사용");
+            System.out.println("3. 이동");
+            System.out.println("4. 귀환");
+            //System.out.println("5. 뒤로가기");
 
-        // 영웅의 행동 선택
-        System.out.println(recentHero.gettName() + "는 무엇을 할까요?");
-        System.out.println("1. 공격");
-        //System.out.println("2. 스킬사용");
-        //System.out.println("3. 이동");
-        //System.out.println("4. 귀환");
-        //System.out.println("5. 뒤로가기");
+            int heroAction = scanner.nextInt();
 
-        int heroAction = scanner.nextInt();
+            switch (heroAction) {
+                case 1:
+                    System.out.println("누구를 공격할까요?");
+                    System.out.println("------------------------------------------");
+                    for (Hero hero : gamer2.getHeroList()) {
+                        System.out.println((gamer2.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
+                    }
+                    System.out.println("------------------------------------------");
+                    System.out.print("공격할 대상을 정해주세요.");
+                    int target = scanner.nextInt();
+                    recentHero.attack(gamer2.getHeroList().get(target - 1));
+                    break;
 
-        switch (heroAction) {
-            case 1:
-                System.out.println("누구를 공격할까요?");
-                for (Hero hero : gamer2.getHeroList()) {
-                    System.out.println((gamer2.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
-                }
-                int target = scanner.nextInt();
+                case 2:
+                    recentHero.skill();
+                    break;
 
-                recentHero.attack(gamer2.getHeroList().get(target - 1));
+                case 3:
+                    System.out.print("방향을 입력해주세요 :");
+                    int direction = scanner.nextInt();
+                    recentHero.move(direction);
+                    break;
+
+                case 4:
+                    recentHero.goHome(recentHero.getTeam());
 
 
-        }
+            }
 
         /*while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -136,7 +158,7 @@ public class Game {
             }
         }*/
 
-
+        }
     }
 
 
