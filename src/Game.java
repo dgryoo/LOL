@@ -1,5 +1,8 @@
+import AbsClass.SThing;
 import AbsClass.Team;
+import AbsClass.Thing;
 import Hero.*;
+import Tower.CommandTower;
 
 import java.util.*;
 
@@ -19,6 +22,9 @@ public class Game {
 
         Gamer gamer1 = new Gamer("gamer1");
         Gamer gamer2 = new Gamer("gamer2");
+
+        CommandTower commandTower1 = new CommandTower(Team.BLUE);
+        CommandTower commandTower2 = new CommandTower(Team.RED);
 
         /*List<Gamer> listRed = new ArrayList<Gamer>();
         List<Gamer> listBlue = new ArrayList<Gamer>();*/
@@ -86,17 +92,33 @@ public class Game {
 
         // 게임시작
         System.out.println("게임이 시작됩니다.");
-        while (true) {
+
+        // 돌아가면서 하기위해 turn 변수 선언
+        boolean turn = true;
+
+        Gamer attackGamer;
+        Gamer defendGamer;
+
+        while (!commandTower1.isVictory() && !commandTower2.isVictory()== false) {
+
+            if (turn) {
+                attackGamer = gamer1;
+                defendGamer = gamer2;
+            } else {
+                attackGamer = gamer2;
+                defendGamer = gamer1;
+            }
+
             // 돌아가면서 한턴씩 실행
-            System.out.println(gamer1.getuName() + "님의 차례입니다.");
+            System.out.println(attackGamer.getuName() + "님의 차례입니다.");
 
             System.out.println("영웅을 선택해주세요");
             // 영웅선택
-            for (Hero hero : gamer1.getHeroList()) {
-                System.out.println((gamer1.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
+            for (Hero hero : attackGamer.getHeroList()) {
+                System.out.println((attackGamer.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
             }
             int selectHero = scanner.nextInt();
-            Hero recentHero = gamer1.getHeroList().get(selectHero - 1);
+            Hero recentHero = attackGamer.getHeroList().get(selectHero - 1);
 
             // 영웅의 행동 선택
             System.out.println(recentHero.gettName() + "는 무엇을 할까요?");
@@ -112,13 +134,13 @@ public class Game {
                 case 1:
                     System.out.println("누구를 공격할까요?");
                     System.out.println("------------------------------------------");
-                    for (Hero hero : gamer2.getHeroList()) {
-                        System.out.println((gamer2.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
+                    for (Hero hero : defendGamer.getHeroList()) {
+                        System.out.println((defendGamer.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
                     }
                     System.out.println("------------------------------------------");
                     System.out.print("공격할 대상을 정해주세요.");
                     int target = scanner.nextInt();
-                    recentHero.attack(gamer2.getHeroList().get(target - 1));
+                    recentHero.attack(defendGamer.getHeroList().get(target - 1));
                     break;
 
                 case 2:
@@ -137,57 +159,9 @@ public class Game {
 
             }
 
-        /*while (true) {
-            Scanner scanner = new Scanner(System.in);
-
-            System.out.println("팀을 선택하세요");
-            System.out.println("1. BLUE");
-            System.out.println("2. RED");
-            int teamSelect = scanner.nextInt();
-            if (teamSelect == 1) {
-                System.out.println("영웅을 선택하세요");
-                for (Gamer gamer : listBlue) {
-                    for (Hero.Hero hero : gamer.getHeroList()) {
-                        for (int i = 0; i < gamer.getHeroList().size(); i++) {
-                            System.out.println(i + 1 + ". " + hero.gettName());
-                        }
-                    }
-                }
-
-
-            }
-        }*/
-
+            turn = !turn;
+            System.out.println(turn);
         }
     }
-
-
-        /*System.out.println("Hero.Ash Hero.Hero Test---------------------------------------------------");
-        Hero.Ash ash = new Hero.Ash(AbsClass.Team.RED);
-        System.out.println(ash.tName);
-        System.out.println("Hero.Ash Hero.Hero Test---------------------------------------------------");*/
-
-
-    //Hero.Ash ash = new Hero.Ash(AbsClass.Team.RED);
-    //System.out.println(ash.tName);
-
-
-        /*Hero.Hero hero1 = new Hero.Ash("user1", AbsClass.Team.RED);
-        Hero.Hero hero2 = new Hero.Ash("user2", AbsClass.Team.RED);
-        Hero.Hero hero3 = new Hero.Ash("user3", AbsClass.Team.BLUE);
-        Hero.Hero hero4 = new Hero.Ash("user4", AbsClass.Team.BLUE);
-
-        Map<String, Hero.Hero> heroMap = new HashMap<String, Hero.Hero>();
-
-        heroMap.put("ryoo1", hero1);
-        heroMap.put("ryoo2", hero2);
-        heroMap.put("ryoo3", hero3);
-        heroMap.put("ryoo4", hero4);
-
-        hero1.attack(hero2);
-        hero1.attack(hero3);
-        hero1.status();*/
-
-
 }
 

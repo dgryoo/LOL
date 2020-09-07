@@ -7,8 +7,8 @@ public abstract class AThing extends Thing implements Attackable {
     int attackRange;
 
 
-    public AThing(String tName, int health, Team team, int armor, int magicArmor, int x, int y, int power, int attackRange) {
-        super(tName, health, team, armor, magicArmor, x, y);
+    public AThing(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
+        super(tName, health, team, armor, magicArmor,x , y);
         this.power = power;
         this.attackRange = attackRange;
     }

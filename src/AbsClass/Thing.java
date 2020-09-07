@@ -20,6 +20,7 @@ public abstract class Thing {
         this.y = y;
 
 
+
     }
 
     public void attacked(int power) {

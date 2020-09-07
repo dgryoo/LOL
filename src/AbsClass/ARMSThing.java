@@ -1,46 +1,18 @@
 package AbsClass;
 
 import Inter.Movable;
+import Inter.Skillable;
 
-public abstract class ARMSThing extends ARSThing implements Movable {
+public abstract class ARMSThing extends ARMThing implements Skillable {
 
 
-    public ARMSThing(String tName, int health, Team team, int armor, int magicArmor, int x, int y, int power, int attackRange) {
-        super(tName, health, team, armor, magicArmor, x, y, power, attackRange);
+    public ARMSThing(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
+        super(tName, health, team, armor, magicArmor, power, attackRange, x, y);
     }
 
     @Override
-    public void move(int direction) {
-        System.out.println("움직일 방향을 선택하세요");
-        switch (direction) {
-            case 1:
-                this.setX(this.getX() - 1);
-                this.setX(this.getY() - 1);
-                break;
-            case 2:
-                this.setY(this.getY() - 1);
-                break;
-            case 3:
-                this.setX(this.getX() + 1);
-                this.setY(this.getY() - 1);
-                break;
-            case 4:
-                this.setX(this.getX() - 1);
-                break;
-            case 6:
-                this.setX(this.getX() + 1);
-                break;
-            case 7:
-                this.setX(this.getX() - 1);
-                this.setY(this.getY() + 1);
-                break;
-            case 8:
-                this.setX(this.getY() + 1);
-                break;
-            case 9:
-                this.setX(this.getX() + 1);
-                this.setY(this.getY() + 1);
-                break;
-        }
+    public void skill() {
+        System.out.println(getTeam() + "팀의 " + gettName() + "이 skill 사용");
+        // 나중에 team 표시 안해주고 gamer는 서로 다른 챔피언을 고르게끔
     }
 }

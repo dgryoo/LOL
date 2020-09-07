@@ -8,6 +8,7 @@ public abstract class RThing extends Thing implements Revivable {
         super(tName, health, team, armor, magicArmor, x, y);
     }
 
+
     @Override
     public void dead() {
         super.dead();
