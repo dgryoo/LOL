@@ -3,7 +3,7 @@
 - Inter.Attackable attack(AbsClass.Thing thing)
 - Inter.Revivable revive()
 - Inter.Movable move(int direction)
-- Inter.Skillable( 아직 구체적으로 생각 못했음)
+- Inter.Skillable( 최하위 객체에서 오버라이딩 )
 
 @ 추상클래스
 
@@ -14,7 +14,7 @@
 - AbsClass.ARThing extends AbsClass.AThing implements Inter.Revivable - 없음
 - ARSTHing extends ARTHing implements Inter.Skillable - Dragon
 - AbsClass.ARMThing extends AbsClass.ARThing implements Inter.Movable - Wolf
-- AbsClass.ARMSThing extends AbsClass.ARMThing implements Inter.Skillable - Hero.Hero, Golem
+- AbsClass.ARMSThing extends AbsClass.ARMThing implements Inter.Skillable - Hero.HeroLegacy, Golem
 
 A <- AM
   <- AR <- ARS <- ARMS
@@ -37,7 +37,7 @@ S
 - Minion extends AbsClass.AMThing
     CommandTower에서 생성하는 쫄따구
 
-- Hero.Hero extends AbsClass.ARMSThing
+- Hero.HeroLegacy extends AbsClass.ARMSThing
 
 - Wolf extends AbsClass.ARMThing
     스킬 못쓰는 중립 몬스터
@@ -47,6 +47,8 @@ S
 
 - Dragon extends AbsClass.ARSThing
     보스중립몬스터 움직이지 못함
+
+
 
 
 

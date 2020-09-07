@@ -12,9 +12,9 @@ public class Game {
         List<String> heroNameList = new ArrayList();
 
         // 영웅목록 나중에 영웅 개요 추가
-        heroNameList.add("Hero.Ash");
-        heroNameList.add("Hero.Echo");
-        heroNameList.add("Hero.Sona");
+        heroNameList.add("Ash");
+        heroNameList.add("Echo");
+        heroNameList.add("Sona");
 
 
         Gamer gamer1 = new Gamer("gamer1");
@@ -23,8 +23,6 @@ public class Game {
         /*List<Gamer> listRed = new ArrayList<Gamer>();
         List<Gamer> listBlue = new ArrayList<Gamer>();*/
 
-
-        System.out.println(gamer1.getHeroList().size());
         System.out.println(gamer1.getuName() + "님 영웅을 선택해주세요");
 
         // gamer1 영웅 선택
@@ -39,13 +37,13 @@ public class Game {
             String heroAdd = scanner.next();
 
             switch (heroAdd) {
-                case "Hero.Ash":
+                case "Ash":
                     gamer1.addHero(new Ash(Team.BLUE));
                     break;
-                case "Hero.Echo":
+                case "Echo":
                     gamer1.addHero(new Echo(Team.BLUE));
                     break;
-                case "Hero.Sona":
+                case "Sona":
                     gamer1.addHero(new Sona(Team.BLUE));
                     break;
                     //다른영웅들추가
@@ -66,13 +64,13 @@ public class Game {
             String heroAdd = scanner.next();
 
             switch (heroAdd) {
-                case "Hero.Ash":
+                case "Ash":
                     gamer2.addHero(new Ash(Team.RED));
                     break;
-                case "Hero.Echo":
+                case "Echo":
                     gamer2.addHero(new Echo(Team.RED));
                     break;
-                case "Hero.Sona":
+                case "Sona":
                     gamer2.addHero(new Sona(Team.RED));
                     break;
                     //다른영웅들추가
