@@ -23,7 +23,7 @@ public class CommandTower extends SThing {
 
     @Override
     public void dead() {
-        super.dead();
+        isVictory();
 
     }
 
