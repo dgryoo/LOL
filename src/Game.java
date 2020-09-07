@@ -26,13 +26,25 @@ public class Game {
         CommandTower commandTower1 = new CommandTower(Team.BLUE);
         CommandTower commandTower2 = new CommandTower(Team.RED);
 
+        // Gamer1/2 를 구분하기위해 turn 생성
+        boolean turn = true;
+
         /*List<Gamer> listRed = new ArrayList<Gamer>();
         List<Gamer> listBlue = new ArrayList<Gamer>();*/
 
-        System.out.println(gamer1.getuName() + "님 영웅을 선택해주세요");
+        // 영웅 선택을 위한 게이머 변수 생성
+        Gamer selectGamer;
 
-        // gamer1 영웅 선택
-        while (gamer1.getHeroList().size() < 3) {
+        // 영웅 선택
+        while (gamer1.getHeroList().size() != 3 || gamer2.getHeroList().size() != 3) {
+            if (turn) {
+                selectGamer = gamer1;
+            } else {
+                selectGamer = gamer2;
+            }
+
+            System.out.println(selectGamer.getuName() + "님 영웅을 선택해주세요");
+
             System.out.println("------------------------------------------");
             for (String name : heroNameList) {
                 System.out.println("- " + name);
@@ -45,43 +57,16 @@ public class Game {
             switch (heroAdd) {
                 case "Ash":
                     //gamer1.addHero(Ash.getInstance(Team.BLUE));
-                    gamer1.addHero(new Ash(Team.BLUE));
+                    selectGamer.addHero(new Ash(Team.BLUE));
+                    turn = !turn;
                     break;
                 case "Echo":
-                    gamer1.addHero(new Echo(Team.BLUE));
+                    selectGamer.addHero(new Echo(Team.BLUE));
+                    turn = !turn;
                     break;
                 case "Sona":
-                    gamer1.addHero(new Sona(Team.BLUE));
-                    break;
-                //다른영웅들추가
-
-                default:
-                    System.out.println("영웅의 이름을 정확히 입력해주세요.");
-            }
-
-        }
-
-        System.out.println(gamer2.getuName() + "님 영웅을 선택해주세요");
-
-        // gamer2 영웅 선택
-        while (gamer2.getHeroList().size() < 3) {
-            System.out.println("------------------------------------------");
-            for (String name : heroNameList) {
-                System.out.println("- " + name);
-            }
-            System.out.println("------------------------------------------");
-            System.out.print("영웅이름 : ");
-            String heroAdd = scanner.next();
-
-            switch (heroAdd) {
-                case "Ash":
-                    gamer2.addHero(new Ash(Team.RED));
-                    break;
-                case "Echo":
-                    gamer2.addHero(new Echo(Team.RED));
-                    break;
-                case "Sona":
-                    gamer2.addHero(new Sona(Team.RED));
+                    selectGamer.addHero(new Sona(Team.BLUE));
+                    turn = !turn;
                     break;
                 //다른영웅들추가
                 default:
@@ -93,13 +78,10 @@ public class Game {
         // 게임시작
         System.out.println("게임이 시작됩니다.");
 
-        // 돌아가면서 하기위해 turn 변수 선언
-        boolean turn = true;
-
         Gamer attackGamer;
         Gamer defendGamer;
 
-        while (!commandTower1.isVictory() && !commandTower2.isVictory()== false) {
+        while (!commandTower1.isVictory() || !commandTower2.isVictory()) {
 
             if (turn) {
                 attackGamer = gamer1;
