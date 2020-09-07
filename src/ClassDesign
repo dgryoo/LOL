@@ -14,7 +14,7 @@
 - AbsClass.ARThing extends AbsClass.AThing implements Inter.Revivable - 없음
 - ARSTHing extends ARTHing implements Inter.Skillable - Dragon
 - AbsClass.ARMThing extends AbsClass.ARThing implements Inter.Movable - Wolf
-- AbsClass.ARMSThing extends AbsClass.ARMThing implements Inter.Skillable - Hero.HeroLegacy, Golem
+- AbsClass.ARMSThing extends AbsClass.ARMThing implements Inter.Skillable - Hero, Golem
 
 A <- AM
   <- AR <- ARS <- ARMS

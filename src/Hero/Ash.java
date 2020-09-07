@@ -7,7 +7,7 @@ public class Ash extends Hero {
     //private static Ash ash;
 
     public Ash(Team team) {
-        super("Ash", 100, team, 10, 10, 10, 10, 20, 20);
+        super("Ash", 100, team, 10, 10, 0, 0, 20, 20);
 
     }
 
