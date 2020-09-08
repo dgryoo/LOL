@@ -19,32 +19,58 @@ public class Game {
         heroNameList.add("Echo");
         heroNameList.add("Sona");
 
-
+        // 게이머 생성
         Gamer gamer1 = new Gamer("gamer1");
+        gamer1.setTeam(Team.BLUE);
         Gamer gamer2 = new Gamer("gamer2");
+        gamer2.setTeam(Team.RED);
 
+        // 커맨드타워 생성
         CommandTower commandTower1 = new CommandTower(Team.BLUE);
         CommandTower commandTower2 = new CommandTower(Team.RED);
 
-        // Gamer1/2 를 구분하기위해 turn 생성
-        boolean turn = true;
+
 
         /*List<Gamer> listRed = new ArrayList<Gamer>();
         List<Gamer> listBlue = new ArrayList<Gamer>();*/
 
+        // 영웅선택순서를 위한 변수
+        int heroSelect = 1;
+
         // 영웅 선택을 위한 게이머, 팀 변수 생성
-        Gamer selectGamer;
-        Team selectTeam;
+        Gamer selectGamer = null;
 
         // 영웅 선택
         while (gamer1.getHeroList().size() != 3 || gamer2.getHeroList().size() != 3) {
-            if (turn) {
+            /*if (turn) {
                 selectGamer = gamer1;
-                selectTeam = Team.BLUE;
             } else {
                 selectGamer = gamer2;
-                selectTeam = Team.RED;
+            }*/
+            System.out.println("heroSelect : " + heroSelect);
+
+            switch (heroSelect) {
+                case 1 :
+                    selectGamer = gamer1;
+                    break;
+                case 2 :
+                    selectGamer = gamer2;
+                    break;
+                case 3 :
+                    selectGamer = gamer2;
+                    break;
+                case 4 :
+                    selectGamer = gamer1;
+                    break;
+                case 5 :
+                    selectGamer = gamer1;
+                    break;
+                case 6 :
+                    selectGamer = gamer2;
+                    break;
             }
+
+            heroSelect++;
 
             System.out.println(selectGamer.getuName() + "님 영웅을 선택해주세요");
 
@@ -60,16 +86,13 @@ public class Game {
             switch (heroAdd) {
                 case "Ash":
                     //gamer1.addHero(Ash.getInstance(Team.BLUE));
-                    selectGamer.addHero(new Ash(selectTeam));
-                    turn = !turn;
+                    selectGamer.addHero(new Ash(selectGamer.getTeam()));
                     break;
                 case "Echo":
-                    selectGamer.addHero(new Echo(selectTeam));
-                    turn = !turn;
+                    selectGamer.addHero(new Echo(selectGamer.getTeam()));
                     break;
                 case "Sona":
-                    selectGamer.addHero(new Sona(selectTeam));
-                    turn = !turn;
+                    selectGamer.addHero(new Sona(selectGamer.getTeam()));
                     break;
                 //다른영웅들추가
                 default:
@@ -78,11 +101,16 @@ public class Game {
 
         }
 
+
+
         // 게임시작
         System.out.println("게임이 시작됩니다.");
 
         Gamer attackGamer;
         Gamer defendGamer;
+
+        // Gamer1/2 를 구분하기위해 turn 생성
+        boolean turn = true;
 
         while (!commandTower1.isVictory() || !commandTower2.isVictory()) {
 
@@ -127,14 +155,14 @@ public class Game {
                     while (true) {
                         System.out.print("공격대상 : ");
                         int target = scanner.nextInt();
-                        if (target >= 1 && target <= 3) {
+                        if (target >= 1 && target <= defendGamer.getHeroList().size()) {
                             recentHero.attack(defendGamer.getHeroList().get(target - 1));
                             break;
                         } else {
                             System.out.println("공격대상을 다시 지정해 주세요.");
                         }
-
                     }
+                    break;
 
                 case 2:
                     recentHero.skill();

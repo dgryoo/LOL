@@ -51,6 +51,14 @@ S
 
 
 
+@ idea
+
+* 팀을 어떻게 할지 BLUE/RED팀 Set? 해서 Gamer, TowerList, Minion List 추가?
 
 
+
+@ issue
+
+* 공격 후 공격한 영웅의 skill()이 호출되는 현상
+    - switch case 문의 break 추가
 

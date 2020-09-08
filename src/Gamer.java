@@ -1,3 +1,4 @@
+import AbsClass.Team;
 import Hero.Hero;
 
 import java.util.ArrayList;
@@ -6,6 +7,7 @@ import java.util.List;
 public class Gamer {
 
     private String uName;
+    private Team team;
     private List<Hero> heroList = new ArrayList();
     /*static {
         System.out.println(uName + "님이 " +hero.tName + " 을 선택하셨습니다.");
@@ -28,5 +30,13 @@ public class Gamer {
 
     public String getuName() {
         return uName;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
