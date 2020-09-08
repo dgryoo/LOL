@@ -20,13 +20,19 @@ public abstract class Thing {
         this.y = y;
 
 
-
     }
 
     public void attacked(int power) {
-        health = health - (power - armor);
-        System.out.println(team + "팀의 " + tName + "이(가)" + (power - armor) + " 의 피해를 받았습니다.");
-        System.out.println(team + "팀의 " + tName + "의 체력은 " + health + " 남았습니다.");
+
+        health = health - (power-armor);
+
+        if (this.health <= 0) {
+            System.out.println(team + "팀의 " + tName + "이(가)" + (power - armor) + " 의 피해를 받았습니다.");
+            dead();
+        } else {
+            System.out.println(team + "팀의 " + tName + "이(가)" + (power - armor) + " 의 피해를 받았습니다.");
+            System.out.println(team + "팀의 " + tName + "의 체력은 " + health + " 남았습니다.");
+        }
     }
 
     public void status() {
@@ -78,5 +84,10 @@ public abstract class Thing {
         this.y = y;
     }
 
-    public void defaultLocation() {}
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public void defaultLocation() {
+    }
 }

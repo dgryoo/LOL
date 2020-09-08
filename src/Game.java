@@ -1,6 +1,4 @@
-import AbsClass.SThing;
 import AbsClass.Team;
-import AbsClass.Thing;
 import Hero.*;
 import Tower.CommandTower;
 
@@ -12,12 +10,31 @@ public class Game {
 
         Scanner scanner = new Scanner(System.in);
 
-        List<String> heroNameList = new ArrayList();
+        //List<String> heroNameList = new ArrayList();
 
         // 영웅목록 나중에 영웅 개요 추가
-        heroNameList.add("Ash");
-        heroNameList.add("Echo");
-        heroNameList.add("Sona");
+        Hero Ash = new Ash(Team.NEUTRAL);
+        Hero Echo = new Echo(Team.NEUTRAL);
+        Hero Sona = new Sona(Team.NEUTRAL);
+        Hero Zed = new Zed(Team.NEUTRAL);
+        Hero Leeshin = new Leeshin(Team.NEUTRAL);
+        Hero SuperPower = new SuperPower(Team.NEUTRAL);
+
+        // (tName, Hero)를 담을 Map heroSelectMap 생성
+        Map<String, Hero> heroSelectMap = new HashMap();
+
+        // heroSelectMap Hero 등록
+        heroSelectMap.put(Ash.gettName(), Ash);
+        heroSelectMap.put(Echo.gettName(), Echo);
+        heroSelectMap.put(Sona.gettName(), Sona);
+        heroSelectMap.put(Zed.gettName(), Zed);
+        heroSelectMap.put(Leeshin.gettName(), Leeshin);
+        heroSelectMap.put(SuperPower.gettName(), SuperPower);
+
+        // heroSelectMap의 key인 tName을 List로 변환
+        List<String> heroSelectList = new ArrayList(heroSelectMap.keySet());
+
+        System.out.println(heroSelectList);
 
         // 게이머 생성
         Gamer gamer1 = new Gamer("gamer1");
@@ -34,8 +51,8 @@ public class Game {
         /*List<Gamer> listRed = new ArrayList<Gamer>();
         List<Gamer> listBlue = new ArrayList<Gamer>();*/
 
-        // 영웅선택순서를 위한 변수
-        int heroSelect = 1;
+        // 영웅선택순서를 위한 변수 int heroSelectTurn
+        int heroSelectTurn = 1;
 
         // 영웅 선택을 위한 게이머, 팀 변수 생성
         Gamer selectGamer = null;
@@ -47,43 +64,69 @@ public class Game {
             } else {
                 selectGamer = gamer2;
             }*/
-            System.out.println("heroSelect : " + heroSelect);
 
-            switch (heroSelect) {
-                case 1 :
+            switch (heroSelectTurn) {
+                case 1:
                     selectGamer = gamer1;
                     break;
-                case 2 :
+                case 2:
                     selectGamer = gamer2;
                     break;
-                case 3 :
+                case 3:
                     selectGamer = gamer2;
                     break;
-                case 4 :
+                case 4:
                     selectGamer = gamer1;
                     break;
-                case 5 :
+                case 5:
                     selectGamer = gamer1;
                     break;
-                case 6 :
+                case 6:
                     selectGamer = gamer2;
                     break;
             }
 
-            heroSelect++;
+            heroSelectTurn++;
 
             System.out.println(selectGamer.getuName() + "님 영웅을 선택해주세요");
 
             System.out.println("------------------------------------------");
-            for (String name : heroNameList) {
-                System.out.println("- " + name);
+            // heroSelectList에 있는 Hero들을 보여줌
+            for (String heroName : heroSelectList) {
+                System.out.println((heroSelectList.indexOf(heroName) + 1) + ". " + heroName);
             }
+            /*for (String name : heroNameList) {
+                System.out.println("- " + name);
+            }*/
             System.out.println("------------------------------------------");
 
-            System.out.print("영웅이름 : ");
-            String heroAdd = scanner.next();
+            System.out.print("번호 : ");
+            int heroSelection = scanner.nextInt();
 
-            switch (heroAdd) {
+            System.out.println("처리여부 : " + (heroSelection > heroSelectList.size()));
+
+            while (!((heroSelection >= 1) && (heroSelection <= heroSelectList.size()))) {
+                System.out.println("번호를 잘 보고 다시 입력해 주세요.");
+                for (String heroName : heroSelectList) {
+                    System.out.println((heroSelectList.indexOf(heroName) + 1) + ". " + heroName);
+                }
+                System.out.print("번호 : ");
+                heroSelection = scanner.nextInt();
+            }
+
+            // Hero의 팀을 Gamer의 팀으로 바꿈
+            heroSelectMap.get(heroSelectList.get(heroSelection - 1)).setTeam(selectGamer.getTeam());
+
+            // Map에서 Hero를 가져옴
+            selectGamer.addHero(heroSelectMap.get(heroSelectList.get(heroSelection - 1)));
+
+
+            // List와 Map에서 Hero 제거
+            heroSelectMap.remove(heroSelectList.get(heroSelection - 1));
+            heroSelectList.remove(heroSelection - 1);
+
+            //
+            /*switch (heroAdd) {
                 case "Ash":
                     //gamer1.addHero(Ash.getInstance(Team.BLUE));
                     selectGamer.addHero(new Ash(selectGamer.getTeam()));
@@ -97,10 +140,9 @@ public class Game {
                 //다른영웅들추가
                 default:
                     System.out.println("영웅의 이름을 정확히 입력해주세요.");
-            }
+            }*/
 
         }
-
 
 
         // 게임시작
@@ -157,6 +199,7 @@ public class Game {
                         int target = scanner.nextInt();
                         if (target >= 1 && target <= defendGamer.getHeroList().size()) {
                             recentHero.attack(defendGamer.getHeroList().get(target - 1));
+                            recentHero.status();
                             break;
                         } else {
                             System.out.println("공격대상을 다시 지정해 주세요.");

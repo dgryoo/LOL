@@ -9,15 +9,11 @@ public abstract class Hero extends ARMSThing {
     private int experience;
 
 
-    public Hero(String tName, int health, Team team, int armor, int magicArmor, int x, int y, int power, int attackRange) {
-
-
-        super(tName, health, team, armor, magicArmor, x, y, power, attackRange);
+    public Hero(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
+        super(tName, health, team, armor, magicArmor, power, attackRange, x, y);
         this.level = 1;
         this.experience = 0;
-
     }
-
 
     public void goHome() {
         if (getTeam() == Team.BLUE) {

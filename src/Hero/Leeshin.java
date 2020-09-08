@@ -2,13 +2,12 @@ package Hero;
 
 import AbsClass.Team;
 
-public class Ash extends Hero {
+public class Leeshin extends Hero {
 
     //private static Ash ash;
 
-    public Ash(Team team) {
-        super("Ash", 100, team, 10, 10, 20, 20, 0, 0);
-
+    public Leeshin(Team team) {
+        super("Leeshin", 120, team, 15, 15, 30, 15, 0,0);
 
     }
 
