@@ -53,6 +53,8 @@ S
 
 @ 만들어야 할 것
 
+* 공격대상에 체력 보이게
+
 * 팀별 객체들을 어떻게 할지 BLUE/RED팀 Set? 해서 Gamer, TowerList, Minion List 추가? (1)
 
 * Gamer가 영웅선택시에 이미 선택된 영웅이 또 선택되지 않도록 (1)
@@ -71,6 +73,7 @@ S
       plusReviveTurn() {reviveValue++;}
       revive(Team team) {if (reviveStack == reviveValue) {sout("부활")} }
       game에서 마지막에 매턴마다 deadList에서 위에 해당하는게 있는지 확인 후 부활시킨 후 value에 key를 추가시킨다.
+      - RTHing에 말고 Game에 생성
 
     - Rthing에 boolean live 를 추가하여 여러 list를 불러올 때 live변수를 사용하여 불러온다.
       문제점 : 2까지만 보여줬는데도 3을 누르게 되면 객체를 사용 할 수 있게됨.
@@ -108,3 +111,6 @@ S
     - 실제로 롤은 턴제 게임이 아닌 실시간으로 움직이는데 원리가 Thread를 나눠서 동시에 돌아가도록 하는 것인가?
       Thread에서 순위를 정할 수 있는 것으로 알고 있는데 이상하게 상점을 켰다가 끄면 성능이 좋지 않은 컴퓨터에서는 상점끌때 렉이 걸림
       Thread에서 우선순위가 높은 동작들을 먼저 처리하고 상점을 끄고 키는것을 맨마지막에 처리하나?
+
+@수업내용 CommandQuerySeperation 명령과 조회를 다르게하는 것
+    toString 오버라이드 Thing 참고

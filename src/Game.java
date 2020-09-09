@@ -148,84 +148,138 @@ public class Game {
         // 게임시작
         System.out.println("게임이 시작됩니다.");
 
-        Gamer attackGamer;
-        Gamer defendGamer;
-
         // Gamer1/2 를 구분하기위해 turn 생성
         boolean turn = true;
 
         while (!commandTower1.isVictory() || !commandTower2.isVictory()) {
 
             if (turn) {
-                attackGamer = gamer1;
-                defendGamer = gamer2;
+                playRound(scanner, gamer1, gamer2);
             } else {
-                attackGamer = gamer2;
-                defendGamer = gamer1;
-            }
-
-            // 돌아가면서 한턴씩 실행
-            System.out.println(attackGamer.getuName() + "님의 차례입니다.");
-
-            System.out.println("영웅을 선택해주세요");
-            // 영웅선택
-            for (Hero hero : attackGamer.getHeroList()) {
-                System.out.println((attackGamer.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
-            }
-            int selectHero = scanner.nextInt();
-            Hero recentHero = attackGamer.getHeroList().get(selectHero - 1);
-
-            // 영웅의 행동 선택
-            System.out.println(recentHero.gettName() + "는 무엇을 할까요?");
-            System.out.println("1. 공격");
-            System.out.println("2. 스킬사용");
-            System.out.println("3. 이동");
-            System.out.println("4. 귀환");
-            //System.out.println("5. 뒤로가기");
-
-            int heroAction = scanner.nextInt();
-
-            switch (heroAction) {
-                case 1:
-                    System.out.println("공격할 대상을 정해주세요.");
-                    System.out.println("------------------------------------------");
-                    for (Hero hero : defendGamer.getHeroList()) {
-                        System.out.println((defendGamer.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
-                    }
-                    System.out.println("------------------------------------------");
-
-                    while (true) {
-                        System.out.print("공격대상 : ");
-                        int target = scanner.nextInt();
-                        if (target >= 1 && target <= defendGamer.getHeroList().size()) {
-                            recentHero.attack(defendGamer.getHeroList().get(target - 1));
-                            recentHero.status();
-                            break;
-                        } else {
-                            System.out.println("공격대상을 다시 지정해 주세요.");
-                        }
-                    }
-                    break;
-
-                case 2:
-                    recentHero.skill();
-                    break;
-
-                case 3:
-                    System.out.print("방향을 입력해주세요 :");
-                    int direction = scanner.nextInt();
-                    recentHero.move(direction);
-                    break;
-
-                case 4:
-                    recentHero.goHome();
-
-
+                playRound(scanner, gamer2, gamer1);
             }
 
             turn = !turn;
-            System.out.println(turn);
         }
+    }
+
+    private static void playRound(Scanner scanner, Gamer attackGamer, Gamer defendGamer) {
+        // 돌아가면서 한턴씩 실행
+        System.out.println(attackGamer.getuName() + "님의 차례입니다.");
+
+        System.out.println("영웅을 선택해주세요");
+        // 영웅선택
+        for (Hero hero : attackGamer.getHeroList()) {
+            System.out.println((attackGamer.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
+        }
+        int selectHero = scanner.nextInt();
+        Hero recentHero = attackGamer.getHeroList().get(selectHero - 1);
+
+        // 영웅의 행동 선택
+        selectHeroActivity(scanner, recentHero, defendGamer.getHeroList());
+
+
+    }
+
+    private static boolean isAttackable(int target, int numOfHeros) {
+
+        return target > 0 && target <= numOfHeros;
+    }
+
+    private static void selectHeroActivity(Scanner scanner, Hero recentHero, List<Hero> defendHeros) {
+        System.out.println(recentHero.gettName() + "는 무엇을 할까요?");
+//        Arrays.asList(HeroActivity.values()).forEach(heroActivity ->
+//                System.out.println(heroActivity.getNum() + ". " + heroActivity.getOption())
+//        );
+
+        Arrays.stream(HeroActivity.values())
+                .map(heroActivity -> heroActivity.getNum() + ". " + heroActivity.getOption())
+                .forEach(System.out::println);
+
+        int heroAction = scanner.nextInt();
+
+        switch (HeroActivity.valueOf(heroAction)) {
+            case ATTACK:
+                System.out.println("공격할 대상을 정해주세요.");
+                System.out.println("------------------------------------------");
+                for (Hero hero : defendHeros) {
+                    System.out.println((defendHeros.indexOf(hero) + 1) + ". " + hero.gettName());
+                }
+                System.out.println("------------------------------------------");
+
+                while (true) {
+                    System.out.print("공격대상 : ");
+                    int target = scanner.nextInt();
+                    if (isAttackable(target, defendHeros.size())) {
+                        recentHero.attack(defendHeros.get(target - 1));
+//                        recentHero.status();
+                        System.out.println(recentHero);
+                        break;
+                    } else {
+                        System.out.println("공격대상을 다시 지정해 주세요.");
+                    }
+                }
+                break;
+
+            case SKILL:
+                recentHero.skill();
+                break;
+
+            case MOVE:
+                System.out.print("방향을 입력해주세요 :");
+                int direction = scanner.nextInt();
+                recentHero.move(direction);
+                break;
+
+            case GOHOME:
+                recentHero.goHome();
+                break;
+            case NONE:
+                System.out.println("알 수 없는 옵션입니다. 다시 선택해 주세요.");
+                selectHeroActivity(scanner, recentHero, defendHeros);
+                break;
+
+        }
+    }
+
+    private enum HeroActivity {
+        ATTACK(1, "공격"),
+        SKILL(2, "스킬사용"),
+        MOVE(3, "이동"),
+        GOHOME(4, "귀환"),
+        NONE(100, "NONE");
+
+
+        int num;
+        String option;
+
+        HeroActivity(int num, String option) {
+            this.num = num;
+            this.option = option;
+        }
+
+        public int getNum() {
+            return num;
+        }
+
+        public String getOption() {
+            return option;
+        }
+
+        public static HeroActivity valueOf(int value) {
+            return Arrays.stream(HeroActivity.values())
+                    .filter(heroActivity -> heroActivity.getNum() == value)
+                    .findFirst()
+                    .orElse(NONE);
+//            for (HeroActivity heroActivity : HeroActivity.values()) {
+//                if (heroActivity.getNum() == value) {
+//                    return heroActivity;
+//                }
+//            }
+//            return NONE;
+        }
+
+
     }
 }
 

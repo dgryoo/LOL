@@ -90,4 +90,18 @@ public abstract class Thing {
 
     public void defaultLocation() {
     }
+
+    @Override
+    public String toString() {
+        return "Thing{" +
+                "tName='" + tName + '\'' +
+                ", health=" + health +
+                ", team=" + team +
+                ", armor=" + armor +
+                ", magicArmor=" + magicArmor +
+                ", x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
 }

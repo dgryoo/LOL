@@ -2,7 +2,7 @@ package AbsClass;
 
 import Inter.Skillable;
 
-public class ARSThing extends ARThing implements Skillable {
+public abstract class ARSThing extends ARThing implements Skillable {
 
     public ARSThing(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
         super(tName, health, team, armor, magicArmor, power, attackRange, x, y);
