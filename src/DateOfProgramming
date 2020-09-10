@@ -10,11 +10,11 @@
 - Athing extends AbsClass.Thing implements Inter.Attackable - TurretTower
 - Rthing extends AbsClass.Thing implements Inter.Revivable - SuppressTower
 - Sthing extends AbsClass.Thing implements Inter.Skillable - CommandTower
-- AbsClass.AMThing extends AbsClass.AThing implements Inter.Movable - Minion
-- AbsClass.ARThing extends AbsClass.AThing implements Inter.Revivable - 없음
+- AbsClass.AttackableMovableThing extends AbsClass.AttackableThing implements Inter.Movable - Minion
+- AbsClass.AttackableRevivableThing extends AbsClass.AttackableThing implements Inter.Revivable - 없음
 - ARSTHing extends ARTHing implements Inter.Skillable - Dragon
-- AbsClass.ARMThing extends AbsClass.ARThing implements Inter.Movable - Wolf
-- AbsClass.ARMSThing extends AbsClass.ARMThing implements Inter.Skillable - Hero, Golem
+- AbsClass.AttackableRevivableMovableThing extends AbsClass.AttackableRevivableThing implements Inter.Movable - Wolf
+- AbsClass.AttackableRevivableMovableSkillableThing extends AbsClass.AttackableRevivableMovableThing implements Inter.Skillable - Hero, Golem
 
 A <- AM
   <- AR <- ARS <- ARMS
@@ -34,19 +34,19 @@ S
 - TurretTower extends AThing
     공격가능한 타워
 
-- Minion extends AbsClass.AMThing
+- Minion extends AbsClass.AttackableMovableThing
     CommandTower에서 생성하는 쫄따구
 
-- Hero extends AbsClass.ARMSThing
+- Hero extends AbsClass.AttackableRevivableMovableSkillableThing
     영웅을 싱글톤으로 하나만 생성하는기능 추가
 
-- Wolf extends AbsClass.ARMThing
+- Wolf extends AbsClass.AttackableRevivableMovableThing
     스킬 못쓰는 중립 몬스터
 
 - Golem extends ARMSTHing
     스킬쓰는 중립 몬스터
 
-- Dragon extends AbsClass.ARSThing
+- Dragon extends AbsClass.AttackableRevivableSkillableThing
     보스중립몬스터 움직이지 못함
 
 

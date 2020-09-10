@@ -1,9 +1,9 @@
 package Hero;
 
-import AbsClass.ARMSThing;
+import AbsClass.AttackableRevivableMovableSkillableThing;
 import AbsClass.Team;
 
-public abstract class Hero extends ARMSThing {
+public abstract class Hero extends AttackableRevivableMovableSkillableThing {
 
     private int level;
     private int experience;

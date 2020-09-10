@@ -1,12 +1,11 @@
 package AbsClass;
 
-import Inter.Movable;
 import Inter.Skillable;
 
-public abstract class ARMSThing extends ARMThing implements Skillable {
+public abstract class AttackableRevivableMovableSkillableThing extends AttackableRevivableMovableThing implements Skillable {
 
 
-    public ARMSThing(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
+    public AttackableRevivableMovableSkillableThing(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
         super(tName, health, team, armor, magicArmor, power, attackRange, x, y);
     }
 

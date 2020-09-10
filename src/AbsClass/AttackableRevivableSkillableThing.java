@@ -2,9 +2,9 @@ package AbsClass;
 
 import Inter.Skillable;
 
-public abstract class ARSThing extends ARThing implements Skillable {
+public abstract class AttackableRevivableSkillableThing extends AttackableRevivableThing implements Skillable {
 
-    public ARSThing(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
+    public AttackableRevivableSkillableThing(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
         super(tName, health, team, armor, magicArmor, power, attackRange, x, y);
     }
 

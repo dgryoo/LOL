@@ -1,9 +1,9 @@
 package Tower;
 
-import AbsClass.SThing;
+import AbsClass.SkillableThing;
 import AbsClass.Team;
 
-public class CommandTower extends SThing {
+public class CommandTower extends SkillableThing {
 
     private boolean victory;
 

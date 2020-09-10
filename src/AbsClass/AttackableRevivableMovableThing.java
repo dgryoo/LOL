@@ -2,9 +2,9 @@ package AbsClass;
 
 import Inter.Movable;
 
-public abstract class ARMThing extends ARThing implements Movable {
+public abstract class AttackableRevivableMovableThing extends AttackableRevivableThing implements Movable {
 
-    public ARMThing(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
+    public AttackableRevivableMovableThing(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
         super(tName, health, team, armor, magicArmor, power, attackRange, x, y);
     }
 
