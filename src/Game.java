@@ -203,8 +203,12 @@ public class Game {
                 System.out.println("공격할 대상을 정해주세요.");
                 System.out.println("------------------------------------------");
                 for (Hero hero : defendHeros) {
-                    System.out.println((defendHeros.indexOf(hero) + 1) + ". " + hero.gettName());
+                    System.out.println((defendHeros.indexOf(hero) + 1) + ". " + hero.gettName() + " health : " + hero.getHealth());
                 }
+
+//                defendHeros.stream()
+//                        .filter(defendHeros -> defendHeros.gettName() + )
+
                 System.out.println("------------------------------------------");
 
                 while (true) {

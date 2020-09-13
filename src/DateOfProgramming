@@ -57,14 +57,6 @@ S
 
 * 팀별 객체들을 어떻게 할지 BLUE/RED팀 Set? 해서 Gamer, TowerList, Minion List 추가? (1)
 
-* Gamer가 영웅선택시에 이미 선택된 영웅이 또 선택되지 않도록 (1)
-
-    - Hero를 SingleTone 객체로 생성해도 의미가 없음
-    - Map<String, Hero> HeroSelectMap을 만들어서 ("Ash", Ash instance)로 저장
-      문제점 : Hero는 new 할때 변수 Team team을 필요로함
-      해결방안 : 1. 우선 new Hero(Team.NEUTRAL)로 생성 후 setTeam(Gamer.getTeam())으로 Team을 변경
-                2. 갈아엎는다.
-
 * Revive 인터페이스를 어떻게 구현 할 것 인가 (1)
     - gamer의 heroList에서 빼서 deadMap<key : Thing, value : List>에 추가했다가 살린다.
       RThing에 int reviveStack, int reviveValue (객체마다 reviveValue를 다르게 할 예정) 을 추가해서
@@ -94,17 +86,28 @@ S
 
 @ 완료한 것
 
+* Gamer가 영웅선택시에 이미 선택된 영웅이 또 선택되지 않도록 (1)
+
+    - Hero를 SingleTone 객체로 생성해도 의미가 없음
+    - Map<String, Hero> HeroSelectMap을 만들어서 ("Ash", Ash instance)로 저장
+      문제점 : Hero는 new 할때 변수 Team team을 필요로함
+      해결방안 : 1. 우선 new Hero(Team.NEUTRAL)로 생성 후 setTeam(Gamer.getTeam())으로 Team을 변경
+                2. 갈아엎는다.
 
 @ issue
 
 * 공격 후 공격한 영웅의 skill()이 호출되는 현상 (해결완료)
     - switch case 문의 break 추가
 
-* Hero의 공격력이 0로 되는현상
+* Hero의 공격력이 0로 되는현상 (해결완료)
     - Hero부터 생성자에서 변수의 위치가 바뀌는 현상이 발생했음
 
-* Thing이 attacked() 할때 health가 피해의 2배로 깎이는 현상
+* Thing이 attacked() 할때 health가 피해의 2배로 깎이는 현상 (해결완료)
     - if문을 썼는데 앞에 if문전에 health가 깎이게 해놓고 if문 안에 또썼음
+
+@ 개선사항
+
+CommandTower에서 victory라는 변수로 게임의 승리, 패배 게임종료를 하게 되는데 Game에서 구현을 해야하는게 맞지않나? (미진행)
 
 @ question
 
