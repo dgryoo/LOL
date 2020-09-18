@@ -19,6 +19,7 @@ public class Game {
         Hero Zed = new Zed(Team.NEUTRAL);
         Hero Leeshin = new Leeshin(Team.NEUTRAL);
         Hero SuperPower = new SuperPower(Team.NEUTRAL);
+        Ash Ash2 = new Ash(Team.NEUTRAL);
 
         // (tName, Hero)를 담을 Map heroSelectMap 생성
         Map<String, Hero> heroSelectMap = new HashMap();
@@ -41,6 +42,7 @@ public class Game {
         gamer1.setTeam(Team.BLUE);
         Gamer gamer2 = new Gamer("gamer2");
         gamer2.setTeam(Team.RED);
+
 
         // 커맨드타워 생성
         CommandTower commandTower1 = new CommandTower(Team.BLUE);

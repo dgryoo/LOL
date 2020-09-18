@@ -10,6 +10,7 @@ public class Gamer {
     private String uName;
     private Team team;
     private List<Hero> heroList = new ArrayList();
+    private List<Thing> thingList = new ArrayList();
     /*static {
         System.out.println(uName + "님이 " +hero.tName + " 을 선택하셨습니다.");
     }*/

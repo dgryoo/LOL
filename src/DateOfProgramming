@@ -53,9 +53,8 @@ S
 
 @ 만들어야 할 것
 
-* 공격대상에 체력 보이게
-
 * 팀별 객체들을 어떻게 할지 BLUE/RED팀 Set? 해서 Gamer, TowerList, Minion List 추가? (1)
+    - Team 클래스를 만들어서 HeroList, MinionList, Tower등을 변수로 가지게끔
 
 * Revive 인터페이스를 어떻게 구현 할 것 인가 (1)
     - gamer의 heroList에서 빼서 deadMap<key : Thing, value : List>에 추가했다가 살린다.
