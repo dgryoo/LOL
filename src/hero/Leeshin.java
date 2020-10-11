@@ -1,6 +1,6 @@
-package Hero;
+package hero;
 
-import AbsClass.Team;
+import absclass.Team;
 
 public class Leeshin extends Hero {
 

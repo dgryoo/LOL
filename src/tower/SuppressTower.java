@@ -1,7 +1,7 @@
-package Tower;
+package tower;
 
-import AbsClass.RevivableThing;
-import AbsClass.Team;
+import absclass.RevivableThing;
+import absclass.Team;
 
 public class SuppressTower extends RevivableThing {
 

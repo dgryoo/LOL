@@ -1,18 +1,15 @@
-package Hero;
+package hero;
 
-import AbsClass.Team;
-import AbsClass.Thing;
+import absclass.Team;
 
-public class SuperPower extends Hero {
+public class Zed extends Hero {
 
     //private static Ash ash;
 
-    public SuperPower(Team team) {
-        super("SuperPower", 300, team, 50, 50, 100,8, 0,0);
+    public Zed(Team team) {
+        super("Zed", 80, team, 10, 10, 40,10,0,0);
 
     }
-
-
 
     /*public static Ash getInstance(Team team) {
         if (ash == null) {

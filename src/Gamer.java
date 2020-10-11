@@ -1,9 +1,10 @@
-import AbsClass.Team;
-import AbsClass.Thing;
-import Hero.Hero;
+import absclass.Team;
+import absclass.Thing;
+import hero.Hero;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Gamer {
 
@@ -11,6 +12,7 @@ public class Gamer {
     private Team team;
     private List<Hero> heroList = new ArrayList();
     private List<Thing> thingList = new ArrayList();
+    //deadHero
     /*static {
         System.out.println(uName + "님이 " +hero.tName + " 을 선택하셨습니다.");
     }*/
@@ -28,6 +30,10 @@ public class Gamer {
 
     public List<Hero> getHeroList() {
         return this.heroList;
+    }
+
+    public List<Hero> getAliveHeroList() {
+        return this.heroList.stream().filter(hero -> hero.isAlive()).collect(Collectors.toList());
     }
 
     public String getuName() {

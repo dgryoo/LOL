@@ -1,6 +1,6 @@
-package AbsClass;
+package absclass;
 
-import Inter.Movable;
+import inter.Movable;
 
 public abstract class AttackableRevivableMovableThing extends AttackableRevivableThing implements Movable {
 

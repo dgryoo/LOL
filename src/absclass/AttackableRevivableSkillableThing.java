@@ -1,6 +1,6 @@
-package AbsClass;
+package absclass;
 
-import Inter.Skillable;
+import inter.Skillable;
 
 public abstract class AttackableRevivableSkillableThing extends AttackableRevivableThing implements Skillable {
 
@@ -13,6 +13,8 @@ public abstract class AttackableRevivableSkillableThing extends AttackableReviva
         System.out.println(getTeam() + "팀의 " + gettName() + "이 skill 사용");
         // 나중에 team 표시 안해주고 gamer는 서로 다른 챔피언을 고르게끔
     }
+
+
 
 
 }

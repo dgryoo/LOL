@@ -1,6 +1,6 @@
-package AbsClass;
+package absclass;
 
-import Inter.*;
+import inter.*;
 
 public abstract class AttackableThing extends Thing implements Attackable {
     int power;

@@ -1,6 +1,6 @@
-package Inter;
+package inter;
 
-import AbsClass.Thing;
+import absclass.Thing;
 
 public interface Attackable {
 

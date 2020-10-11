@@ -1,12 +1,13 @@
-package Hero;
+package hero;
 
-import AbsClass.AttackableRevivableMovableSkillableThing;
-import AbsClass.Team;
+import absclass.AttackableRevivableMovableSkillableThing;
+import absclass.Team;
 
 public abstract class Hero extends AttackableRevivableMovableSkillableThing {
 
     private int level;
     private int experience;
+
 
 
     public Hero(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
@@ -26,6 +27,8 @@ public abstract class Hero extends AttackableRevivableMovableSkillableThing {
             setY(5);
         }
     }
+
+
 
 }
 

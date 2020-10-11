@@ -1,13 +1,15 @@
-package AbsClass;
+package absclass;
 
 public abstract class Thing {
     private String tName;
+    private int maxHealth;
     private int health;
     private Team team;
     private int armor;
     private int magicArmor;
     private int x;
     private int y;
+    private boolean state = true;
 
 
     Thing(String tName, int health, Team team, int armor, int magicArmor, int x, int y) {
@@ -18,6 +20,7 @@ public abstract class Thing {
         this.magicArmor = magicArmor;
         this.x = x;
         this.y = y;
+        this.maxHealth = health;
 
 
     }
@@ -46,6 +49,7 @@ public abstract class Thing {
 
     public void dead() {
         System.out.println(team + "팀의 " + tName + "이(가)" + " 죽었습니다");
+        state = false;
     }
 
     public String gettName() {
@@ -102,6 +106,16 @@ public abstract class Thing {
                 ", x=" + x +
                 ", y=" + y +
                 '}';
+    }
+
+    public boolean isAlive() {
+        return state;
+    }
+
+    protected void alive() {
+        state = true;
+        System.out.println(this + "살아남");
+        health = maxHealth;
     }
 
 }

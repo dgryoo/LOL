@@ -1,6 +1,8 @@
-import AbsClass.Team;
-import Hero.*;
-import Tower.CommandTower;
+import absclass.Team;
+import hero.*;
+import inter.Revivable;
+import manager.RevivableManager;
+import tower.CommandTower;
 
 import java.util.*;
 
@@ -147,6 +149,7 @@ public class Game {
         }
 
 
+
         // 게임시작
         System.out.println("게임이 시작됩니다.");
 
@@ -166,19 +169,25 @@ public class Game {
     }
 
     private static void playRound(Scanner scanner, Gamer attackGamer, Gamer defendGamer) {
+
+        //checkToRevive
+        RevivableManager.getInstance().checkToRevive();
+
+
         // 돌아가면서 한턴씩 실행
         System.out.println(attackGamer.getuName() + "님의 차례입니다.");
 
         System.out.println("영웅을 선택해주세요");
         // 영웅선택
-        for (Hero hero : attackGamer.getHeroList()) {
-            System.out.println((attackGamer.getHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
+        for (Hero hero : attackGamer.getAliveHeroList()) {
+            System.out.println((attackGamer.getAliveHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
         }
         int selectHero = scanner.nextInt();
-        Hero recentHero = attackGamer.getHeroList().get(selectHero - 1);
+        Hero recentHero = attackGamer.getAliveHeroList().get(selectHero - 1);
 
         // 영웅의 행동 선택
-        selectHeroActivity(scanner, recentHero, defendGamer.getHeroList());
+        selectHeroActivity(scanner, recentHero, defendGamer.getAliveHeroList());
+
 
 
     }
@@ -287,5 +296,11 @@ public class Game {
 
 
     }
+
+
+
+
+
+
 }
 

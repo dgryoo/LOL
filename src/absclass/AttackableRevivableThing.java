@@ -1,6 +1,7 @@
-package AbsClass;
+package absclass;
 
-import Inter.Revivable;
+import inter.Revivable;
+import manager.RevivableManager;
 
 public abstract class AttackableRevivableThing extends AttackableThing implements Revivable {
 
@@ -11,12 +12,12 @@ public abstract class AttackableRevivableThing extends AttackableThing implement
     @Override
     public void dead() {
         super.dead();
-        revive();
+        RevivableManager.getInstance().addDeadRevivable(this);
     }
 
     @Override
     public void revive() {
-        System.out.println(gettName() + "가 " + "5턴뒤에 부활합니다");
+        alive();
     }
 
 }

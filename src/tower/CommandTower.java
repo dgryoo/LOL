@@ -1,7 +1,7 @@
-package Tower;
+package tower;
 
-import AbsClass.SkillableThing;
-import AbsClass.Team;
+import absclass.SkillableThing;
+import absclass.Team;
 
 public class CommandTower extends SkillableThing {
 

@@ -1,7 +1,7 @@
-package Tower;
+package tower;
 
-import AbsClass.AttackableThing;
-import AbsClass.Team;
+import absclass.AttackableThing;
+import absclass.Team;
 
 public class TurretTower extends AttackableThing {
 

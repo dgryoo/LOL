@@ -1,4 +1,4 @@
-package AbsClass;
+package absclass;
 
 public enum Team {
 

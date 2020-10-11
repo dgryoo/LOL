@@ -1,20 +1,20 @@
 @ 인터페이스
 
-- Inter.Attackable attack(AbsClass.Thing thing)
-- Inter.Revivable revive()
-- Inter.Movable move(int direction)
-- Inter.Skillable( 최하위 객체에서 오버라이딩 )
+- inter.Attackable attack(absclass.Thing thing)
+- inter.Revivable revive()
+- inter.Movable move(int direction)
+- inter.Skillable( 최하위 객체에서 오버라이딩 )
 
 @ 추상클래스
 
-- Athing extends AbsClass.Thing implements Inter.Attackable - TurretTower
-- Rthing extends AbsClass.Thing implements Inter.Revivable - SuppressTower
-- Sthing extends AbsClass.Thing implements Inter.Skillable - CommandTower
-- AbsClass.AttackableMovableThing extends AbsClass.AttackableThing implements Inter.Movable - Minion
-- AbsClass.AttackableRevivableThing extends AbsClass.AttackableThing implements Inter.Revivable - 없음
-- ARSTHing extends ARTHing implements Inter.Skillable - Dragon
-- AbsClass.AttackableRevivableMovableThing extends AbsClass.AttackableRevivableThing implements Inter.Movable - Wolf
-- AbsClass.AttackableRevivableMovableSkillableThing extends AbsClass.AttackableRevivableMovableThing implements Inter.Skillable - Hero, Golem
+- Athing extends absclass.Thing implements inter.Attackable - TurretTower
+- Rthing extends absclass.Thing implements inter.Revivable - SuppressTower
+- Sthing extends absclass.Thing implements inter.Skillable - CommandTower
+- absclass.AttackableMovableThing extends absclass.AttackableThing implements inter.Movable - Minion
+- absclass.AttackableRevivableThing extends absclass.AttackableThing implements inter.Revivable - 없음
+- ARSTHing extends ARTHing implements inter.Skillable - Dragon
+- absclass.AttackableRevivableMovableThing extends absclass.AttackableRevivableThing implements inter.Movable - Wolf
+- absclass.AttackableRevivableMovableSkillableThing extends absclass.AttackableRevivableMovableThing implements inter.Skillable - hero, Golem
 
 A <- AM
   <- AR <- ARS <- ARMS
@@ -34,19 +34,19 @@ S
 - TurretTower extends AThing
     공격가능한 타워
 
-- Minion extends AbsClass.AttackableMovableThing
+- Minion extends absclass.AttackableMovableThing
     CommandTower에서 생성하는 쫄따구
 
-- Hero extends AbsClass.AttackableRevivableMovableSkillableThing
+- hero extends absclass.AttackableRevivableMovableSkillableThing
     영웅을 싱글톤으로 하나만 생성하는기능 추가
 
-- Wolf extends AbsClass.AttackableRevivableMovableThing
+- Wolf extends absclass.AttackableRevivableMovableThing
     스킬 못쓰는 중립 몬스터
 
 - Golem extends ARMSTHing
     스킬쓰는 중립 몬스터
 
-- Dragon extends AbsClass.AttackableRevivableSkillableThing
+- Dragon extends absclass.AttackableRevivableSkillableThing
     보스중립몬스터 움직이지 못함
 
 
@@ -54,7 +54,7 @@ S
 @ 만들어야 할 것
 
 * 팀별 객체들을 어떻게 할지 BLUE/RED팀 Set? 해서 Gamer, TowerList, Minion List 추가? (1)
-    - Team 클래스를 만들어서 HeroList, MinionList, Tower등을 변수로 가지게끔
+    - Team 클래스를 만들어서 HeroList, MinionList, Tower등을 변수로 가지게끔 (x 불가능)
 
 * Revive 인터페이스를 어떻게 구현 할 것 인가 (1)
     - gamer의 heroList에서 빼서 deadMap<key : Thing, value : List>에 추가했다가 살린다.
@@ -88,9 +88,9 @@ S
 * Gamer가 영웅선택시에 이미 선택된 영웅이 또 선택되지 않도록 (1)
 
     - Hero를 SingleTone 객체로 생성해도 의미가 없음
-    - Map<String, Hero> HeroSelectMap을 만들어서 ("Ash", Ash instance)로 저장
+    - Map<String, hero> HeroSelectMap을 만들어서 ("Ash", Ash instance)로 저장
       문제점 : Hero는 new 할때 변수 Team team을 필요로함
-      해결방안 : 1. 우선 new Hero(Team.NEUTRAL)로 생성 후 setTeam(Gamer.getTeam())으로 Team을 변경
+      해결방안 : 1. 우선 new hero(Team.NEUTRAL)로 생성 후 setTeam(Gamer.getTeam())으로 Team을 변경
                 2. 갈아엎는다.
 
 @ issue
