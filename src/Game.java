@@ -226,10 +226,14 @@ public class Game {
                     System.out.print("공격대상 : ");
                     int target = scanner.nextInt();
                     if (isAttackable(target, defendHeros.size())) {
-                        recentHero.attack(defendHeros.get(target - 1));
-//                        recentHero.status();
-                        System.out.println(recentHero);
-                        break;
+                        if (recentHero.isAttack(defendHeros.get(target - 1))) {
+                            recentHero.attack(defendHeros.get(target - 1));
+                            System.out.println(recentHero);
+                            break;
+                        } else {
+                            System.out.println("사정거리가 안됩니다.");
+                        }
+
                     } else {
                         System.out.println("공격대상을 다시 지정해 주세요.");
                     }

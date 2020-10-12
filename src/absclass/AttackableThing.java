@@ -8,13 +8,14 @@ public abstract class AttackableThing extends Thing implements Attackable {
 
 
     public AttackableThing(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
-        super(tName, health, team, armor, magicArmor,x , y);
+        super(tName, health, team, armor, magicArmor, x, y);
         this.power = power;
         this.attackRange = attackRange;
     }
 
     @Override
     public void attack(Thing thing) {
+
         if (getTeam() == thing.getTeam()) {
             System.out.println("같은팀을 공격할 수 없습니다.");
         } else {
@@ -27,6 +28,14 @@ public abstract class AttackableThing extends Thing implements Attackable {
 
     }
 
+    @Override
+    public boolean isAttack(Thing thing) {
+        if (Math.sqrt(Math.pow(this.getX() - thing.getX(), 2) + Math.pow(this.getY() - thing.getY(), 2)) <= attackRange) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public int getPower() {
         return power;
@@ -36,7 +45,9 @@ public abstract class AttackableThing extends Thing implements Attackable {
         this.power = power;
     }
 
-    public int getAttackRange() { return attackRange; }
+    public int getAttackRange() {
+        return attackRange;
+    }
 
     public void setAttackRange(int attackRange) {
         this.attackRange = attackRange;
