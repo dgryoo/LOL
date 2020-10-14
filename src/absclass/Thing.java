@@ -60,6 +60,10 @@ public abstract class Thing {
         return health;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public Team getTeam() {
         return team;
     }

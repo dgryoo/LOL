@@ -1,5 +1,6 @@
 package absclass;
 
+import inter.Skill;
 import inter.Skillable;
 
 public abstract class AttackableRevivableSkillableThing extends AttackableRevivableThing implements Skillable {
@@ -9,12 +10,10 @@ public abstract class AttackableRevivableSkillableThing extends AttackableReviva
     }
 
     @Override
-    public void skill() {
-        System.out.println(getTeam() + "팀의 " + gettName() + "이 skill 사용");
-        // 나중에 team 표시 안해주고 gamer는 서로 다른 챔피언을 고르게끔
+    public int skillActivate(Skill skill) {
+        System.out.println("skill power : " + skill.getSkillPower()+ "#################");
+        return skill.getSkillPower();
     }
-
-
 
 
 }

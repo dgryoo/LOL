@@ -1,10 +1,9 @@
 package hero;
 
 import absclass.Team;
+import inter.Skill;
 
 public class SuperPower extends Hero {
-
-    //private static Ash ash;
 
     public SuperPower(Team team) {
         super("SuperPower", 300, team, 50, 50, 100,8, 0,0);

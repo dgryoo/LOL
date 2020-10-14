@@ -1,6 +1,10 @@
+import absclass.AttackableRevivableMovableSkillableThing;
 import absclass.Team;
 import hero.*;
 import inter.Revivable;
+import inter.Skill;
+import inter.SkillAttackedable;
+import inter.Skillable;
 import manager.RevivableManager;
 import tower.CommandTower;
 
@@ -22,6 +26,11 @@ public class Game {
         Hero Leeshin = new Leeshin(Team.NEUTRAL);
         Hero SuperPower = new SuperPower(Team.NEUTRAL);
         Ash Ash2 = new Ash(Team.NEUTRAL);
+
+        //TODO Skill Test
+        Skill testSkill = new Skill("SkillTest", "physical", "Targeting", 100, 500);
+
+        SuperPower.setSkill(testSkill);
 
         // (tName, Hero)를 담을 Map heroSelectMap 생성
         Map<String, Hero> heroSelectMap = new HashMap();
@@ -149,7 +158,6 @@ public class Game {
         }
 
 
-
         // 게임시작
         System.out.println("게임이 시작됩니다.");
 
@@ -187,7 +195,6 @@ public class Game {
 
         // 영웅의 행동 선택
         selectHeroActivity(scanner, recentHero, defendGamer.getAliveHeroList());
-
 
 
     }
@@ -241,7 +248,29 @@ public class Game {
                 break;
 
             case SKILL:
-                recentHero.skill();
+                System.out.println("공격할 대상을 정해주세요.");
+                System.out.println("------------------------------------------");
+                for (Hero hero : defendHeros) {
+                    System.out.println((defendHeros.indexOf(hero) + 1) + ". " + hero.gettName() + " health : " + hero.getHealth());
+                }
+
+                while (true) {
+                    System.out.print("공격대상 : ");
+                    int target = scanner.nextInt();
+                    if (isAttackable(target, defendHeros.size())) {
+                        if (recentHero.isAttack(defendHeros.get(target - 1))) {
+                            skillAttackedManagement(recentHero, defendHeros.get(target - 1));
+                            System.out.println(recentHero);
+                            break;
+                        } else {
+                            System.out.println("사정거리가 안됩니다.");
+                        }
+
+                    } else {
+                        System.out.println("공격대상을 다시 지정해 주세요.");
+                    }
+                }
+
                 break;
 
             case MOVE:
@@ -301,10 +330,18 @@ public class Game {
 
     }
 
+    public static void skillAttackedManagement(AttackableRevivableMovableSkillableThing attacker, AttackableRevivableMovableSkillableThing attackeder) {
+        //TODO 스킬 쳐맞는거 관리하는 메소드
+        Skill recentSkill = attacker.getSkill();
+        int recentSkillPower = recentSkill.getSkillPower();
+        String recentSkillType = recentSkill.getDamageType();
 
+        if (recentSkillType == "physical") {
+            attackeder.skillAttacked(recentSkillPower - attackeder.getMagicArmor());
+        } else {
+            attackeder.skillAttacked(recentSkillPower - attackeder.getArmor());
+        }
 
-
-
+    }
 
 }
-

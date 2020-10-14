@@ -35,4 +35,6 @@ public class CommandTower extends SkillableThing {
         System.out.println(this.getTeam() + "팀 승리");
         this.victory = !this.victory;
     }
+
+
 }
