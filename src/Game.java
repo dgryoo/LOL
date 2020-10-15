@@ -344,4 +344,10 @@ public class Game {
 
     }
 
+    public static void skillAttackedManagement(AttackableRevivableMovableSkillableThing attacker, int x, int y) {
+
+
+
+    }
+
 }
