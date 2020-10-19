@@ -1,18 +1,18 @@
-package tower;
+package defaultThing;
 
 import absclass.SkillableThing;
-import absclass.Team;
+import absclass.TeamEnum;
 
 public class CommandTower extends SkillableThing {
 
     private boolean victory;
 
-    public CommandTower(Team team) {
+    public CommandTower(TeamEnum team) {
         super("CommandTower", 300, team, 20, 20, 0, 0);
-        if (team == Team.BLUE) {
+        if (team == TeamEnum.BLUE) {
             setX(2);
             setY(5);
-        } else if (team == Team.RED) {
+        } else if (team == TeamEnum.RED) {
             setX(29);
             setY(5);
         }

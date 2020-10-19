@@ -5,7 +5,7 @@ import manager.RevivableManager;
 
 public abstract class RevivableThing extends Thing implements Revivable {
 
-    public RevivableThing(String tName, int health, Team team, int armor, int magicArmor, int x, int y) {
+    public RevivableThing(String tName, int health, TeamEnum team, int armor, int magicArmor, int x, int y) {
         super(tName, health, team, armor, magicArmor, x, y);
     }
 

@@ -1,12 +1,12 @@
 package hero;
 
-import absclass.Team;
+import absclass.TeamEnum;
 
 public class Ash extends Hero {
 
     //private static Ash ash;
 
-    public Ash(Team team) {
+    public Ash(TeamEnum team) {
         super("Ash", 100, team, 10, 10, 20, 20, 0, 0);
 
 

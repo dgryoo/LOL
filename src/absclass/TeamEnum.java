@@ -1,6 +1,6 @@
 package absclass;
 
-public enum Team {
+public enum TeamEnum {
 
     RED,
     BLUE,

@@ -8,7 +8,7 @@ public abstract class AttackableRevivableMovableSkillableThing extends Attackabl
 
     private Skill skill;
 
-    public AttackableRevivableMovableSkillableThing(String tName, int health, Team team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
+    public AttackableRevivableMovableSkillableThing(String tName, int health, TeamEnum team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
         super(tName, health, team, armor, magicArmor, power, attackRange, x, y);
     }
 

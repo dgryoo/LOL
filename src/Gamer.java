@@ -1,4 +1,4 @@
-import absclass.Team;
+import absclass.TeamEnum;
 import absclass.Thing;
 import hero.Hero;
 
@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Gamer {
 
     private String uName;
-    private Team team;
+    private TeamEnum team;
     private List<Hero> heroList = new ArrayList();
     private List<Thing> thingList = new ArrayList();
     //deadHero
@@ -40,11 +40,11 @@ public class Gamer {
         return uName;
     }
 
-    public Team getTeam() {
+    public TeamEnum getTeam() {
         return team;
     }
 
-    public void setTeam(Team team) {
+    public void setTeam(TeamEnum team) {
         this.team = team;
     }
 }

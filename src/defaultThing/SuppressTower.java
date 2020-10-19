@@ -1,11 +1,11 @@
-package tower;
+package defaultThing;
 
 import absclass.RevivableThing;
-import absclass.Team;
+import absclass.TeamEnum;
 
 public class SuppressTower extends RevivableThing {
 
-    public SuppressTower(Team team) {
+    public SuppressTower(TeamEnum team) {
         super("SuppressTower", 150, team, 10, 10, 0, 0);
     }
 

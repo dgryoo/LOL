@@ -5,7 +5,7 @@ import inter.Skillable;
 
 public abstract class SkillableThing extends Thing implements Skillable {
 
-    public SkillableThing(String tName, int health, Team team, int armor, int magicArmor, int x, int y) {
+    public SkillableThing(String tName, int health, TeamEnum team, int armor, int magicArmor, int x, int y) {
         super(tName, health, team, armor, magicArmor, x, y);
     }
 

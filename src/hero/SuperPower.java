@@ -1,11 +1,10 @@
 package hero;
 
-import absclass.Team;
-import inter.Skill;
+import absclass.TeamEnum;
 
 public class SuperPower extends Hero {
 
-    public SuperPower(Team team) {
+    public SuperPower(TeamEnum team) {
         super("SuperPower", 300, team, 50, 50, 100,8, 0,0);
 
     }

@@ -4,7 +4,7 @@ public abstract class Thing {
     private String tName;
     private int maxHealth;
     private int health;
-    private Team team;
+    private TeamEnum team;
     private int armor;
     private int magicArmor;
     private int x;
@@ -12,7 +12,7 @@ public abstract class Thing {
     private boolean state = true;
 
 
-    Thing(String tName, int health, Team team, int armor, int magicArmor, int x, int y) {
+    Thing(String tName, int health, TeamEnum team, int armor, int magicArmor, int x, int y) {
         this.tName = tName;
         this.health = health;
         this.team = team;
@@ -64,7 +64,7 @@ public abstract class Thing {
         this.health = health;
     }
 
-    public Team getTeam() {
+    public TeamEnum getTeam() {
         return team;
     }
 
@@ -92,7 +92,7 @@ public abstract class Thing {
         this.y = y;
     }
 
-    public void setTeam(Team team) {
+    public void setTeam(TeamEnum team) {
         this.team = team;
     }
 
