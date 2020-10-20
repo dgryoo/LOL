@@ -8,6 +8,7 @@ import hero.Hero;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Team {
     private String userName;
@@ -15,8 +16,8 @@ public class Team {
     private CommandTower commandTower;
     private SuppressTower suppressTower;
     private TurretTower turretTower;
-    List<Hero> heroList = new ArrayList();
-    List<Minion> minionList = new ArrayList();
+    private List<Hero> heroList = new ArrayList();
+    private List<Minion> minionList = new ArrayList();
 
     public Team(TeamEnum teamEnum) {
         this.teamEnum = teamEnum;
@@ -31,7 +32,7 @@ public class Team {
 
     public void setUserName(String userName) {
         this.userName = userName;
-        System.out.println(userName + "님은 " + teamEnum +"팀 입니다");
+        System.out.println(userName + "님은 " + teamEnum + "팀 입니다");
     }
 
     public TeamEnum getTeamEnum() {
@@ -75,8 +76,13 @@ public class Team {
     }
 
     public void addHero(Hero hero) {
+        hero.setTeam(teamEnum);
         heroList.add(hero);
-        System.out.println(userName + "이 " + hero.gettName() + "를 선택했습니다");
+        System.out.println(teamEnum + "팀 " + userName + "님이 " + hero.gettName()+ "을 선택");
+    }
+
+    public List<Hero> getAliveHeroList() {
+        return this.heroList.stream().filter(hero -> hero.isAlive()).collect(Collectors.toList());
     }
 
     public List<Minion> getMinionList() {

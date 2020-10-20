@@ -1,3 +1,7 @@
+@ Refactoring
+
+Gamer 클래스 리팩토링완료 Gamer -> Team
+
 @ 인터페이스
 
 - inter.Attackable attack(absclass.Thing thing)
@@ -48,7 +52,6 @@ S
 
 - Dragon extends absclass.AttackableRevivableSkillableThing
     보스중립몬스터 움직이지 못함
-
 
 
 @ 만들어야 할 것
