@@ -49,10 +49,10 @@ public class PlayGame {
         selectHeroList.add(Leeshin);
         selectHeroList.add(SuperPower);
 
-        // 게임의 List에 추가
-        game.setHeroSelectList(selectHeroList);
+        // 영웅선택
+        game.selectHero(selectHeroList, scanner);
 
-        game.getHeroSelectList().stream().forEach(hero -> System.out.println(hero.gettName()));
+
 
 
 
