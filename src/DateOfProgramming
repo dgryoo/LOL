@@ -1,6 +1,6 @@
 @ Refactoring
 
-Gamer 클래스 리팩토링완료 Gamer -> Team
+Gamer 클래스 리팩토링완료 Gamer -> gamePlay.Team
 
 @ 인터페이스
 
@@ -60,7 +60,7 @@ S
     - SkillAttackedable 인터페이스를 만들어서 SkillAttack
 
 * 팀별 객체들을 어떻게 할지 BLUE/RED팀 Set? 해서 Gamer, TowerList, Minion List 추가? (2)
-    - Team 클래스를 만들어서 HeroList, MinionList, Tower등을 변수로 가지게끔 (x 불가능)
+    - gamePlay.Team 클래스를 만들어서 HeroList, MinionList, Tower등을 변수로 가지게끔 (x 불가능)
 
 
 * TurretTower, Minion, Creep AutoAttack (2)
@@ -84,7 +84,7 @@ S
       Stack == Value 가 되었을때 부활한다. 게임 while문 마지막에 배치시켜 턴이 끝났을때 부활하도록 함.
       deadMap에 들어갔을때 deadMap에 있는 객체의 reviveTurn을 턴마다 1씩 증가
       plusReviveTurn() {reviveValue++;}
-      revive(Team team) {if (reviveStack == reviveValue) {sout("부활")} }
+      revive(gamePlay.Team team) {if (reviveStack == reviveValue) {sout("부활")} }
       game에서 마지막에 매턴마다 deadList에서 위에 해당하는게 있는지 확인 후 부활시킨 후 value에 key를 추가시킨다.
       - RTHing에 말고 Game에 생성
 
@@ -97,8 +97,8 @@ S
 
     - Hero를 SingleTone 객체로 생성해도 의미가 없음
     - Map<String, hero> HeroSelectMap을 만들어서 ("Ash", Ash instance)로 저장
-      문제점 : Hero는 new 할때 변수 Team team을 필요로함
-      해결방안 : 1. 우선 new hero(Team.NEUTRAL)로 생성 후 setTeam(Gamer.getTeam())으로 Team을 변경
+      문제점 : Hero는 new 할때 변수 gamePlay.Team team을 필요로함
+      해결방안 : 1. 우선 new hero(gamePlay.Team.NEUTRAL)로 생성 후 setTeam(Gamer.getTeam())으로 Team을 변경
                 2. 갈아엎는다.
 
 @ issue

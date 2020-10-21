@@ -11,7 +11,7 @@ public class Leeshin extends Hero {
 
     }
 
-    /*public static Ash getInstance(Team team) {
+    /*public static Ash getInstance(gamePlay.Team team) {
         if (ash == null) {
             ash = new Ash(team);
             return ash;
