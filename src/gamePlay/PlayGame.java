@@ -6,13 +6,12 @@ import hero.*;
 import inter.Skill;
 import manager.RevivableManager;
 import defaultThing.CommandTower;
-
 import java.sql.SQLOutput;
 import java.util.*;
 
 public class PlayGame {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         // 게임 생성
         Game game = new Game();
@@ -54,7 +53,29 @@ public class PlayGame {
         // 영웅선택
         game.selectHero(selectHeroList, scanner);
 
+        System.out.print("3 ");
+        Thread.sleep(3000);
+        System.out.print("2 ");
+        Thread.sleep(3000);
+        System.out.print("1 ");
 
+
+
+        System.out.println("게임이 시작됩니다.");
+
+        // Gamer1/2 를 구분하기위해 turn 생성
+        boolean turn = true;
+
+        while (!game.getBlue().getCommandTower().isVictory() || !game.getRed().getCommandTower().isVictory()) {
+
+            if (turn) {
+                game.playRound(scanner, game.getBlue(),game.getRed());
+            } else {
+                game.playRound(scanner, game.getRed(),game.getBlue());
+            }
+
+            turn = !turn;
+        }
 
 
 

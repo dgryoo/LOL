@@ -1,7 +1,9 @@
 package gamePlay;
 
+import absclass.AttackableRevivableMovableSkillableThing;
 import absclass.TeamEnum;
 import hero.*;
+import inter.Skill;
 import manager.RevivableManager;
 
 import java.util.*;
@@ -120,25 +122,25 @@ public class Game {
 
     }
     // TODO playRound, selectHeroActivity, isAttackable, SkillManagement, HeroActivity 정리
-    public void playRound(Scanner scanner, Gamer attackGamer, Gamer defendGamer) {
+    public void playRound(Scanner scanner, Team attackTeam, Team defendTeam) {
 
         //checkToRevive
         RevivableManager.getInstance().checkToRevive();
 
 
         // 돌아가면서 한턴씩 실행
-        System.out.println(attackGamer.getuName() + "님의 차례입니다.");
+        System.out.println(attackTeam.getUserName() + "님의 차례입니다.");
 
         System.out.println("영웅을 선택해주세요");
         // 영웅선택
-        for (Hero hero : attackGamer.getAliveHeroList()) {
-            System.out.println((attackGamer.getAliveHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
+        for (Hero hero : attackTeam.getAliveHeroList()) {
+            System.out.println((attackTeam.getAliveHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
         }
         int selectHero = scanner.nextInt();
-        Hero recentHero = attackGamer.getAliveHeroList().get(selectHero - 1);
+        Hero recentHero = attackTeam.getAliveHeroList().get(selectHero - 1);
 
         // 영웅의 행동 선택
-        selectHeroActivity(scanner, recentHero, defendGamer.getAliveHeroList());
+        selectHeroActivity(scanner, recentHero, defendTeam.getAliveHeroList());
 
 
     }
@@ -211,7 +213,7 @@ public class Game {
                 }
 
                 break;
-
+//TODO Move 되는지 확인
             case MOVE:
                 System.out.print("방향을 입력해주세요 :");
                 int direction = scanner.nextInt();
@@ -233,5 +235,20 @@ public class Game {
 
         return target > 0 && target <= numOfHeros;
     }
+
+    private void skillAttackedManagement(AttackableRevivableMovableSkillableThing attacker, AttackableRevivableMovableSkillableThing attackeder) {
+        //TODO 스킬 맞는거 관리하는 메소드
+        Skill recentSkill = attacker.getSkill();
+        int recentSkillPower = recentSkill.getSkillPower();
+        String recentSkillType = recentSkill.getDamageType();
+
+        if (recentSkillType == "physical") {
+            attackeder.skillAttacked(recentSkillPower - attackeder.getMagicArmor());
+        } else {
+            attackeder.skillAttacked(recentSkillPower - attackeder.getArmor());
+        }
+
+    }
+
 
 }
