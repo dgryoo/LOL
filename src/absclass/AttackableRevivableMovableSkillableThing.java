@@ -13,22 +13,8 @@ public abstract class AttackableRevivableMovableSkillableThing extends Attackabl
     }
 
     @Override
-    public int skillActivate(Skill skill) {
-        System.out.println("skill power : " + skill.getSkillPower()+ "#################");
-        return skill.getSkillPower();
-    }
-
-    @Override
-    public void skillAttacked(int power) {
-        setHealth(getHealth()-power);
-
-        if (getHealth() <= 0) {
-            System.out.println(power + "의 스킬피해를 받음#######");
-            dead();
-        } else {
-            System.out.println(power + "의 스킬피해를 받음#######");
-            System.out.println(gettName() + "의 체력이" + getHealth() + " 남았습니다##############");
-        }
+    public Skill skillAttack() {
+        return skill;
     }
 
     public Skill getSkill() {

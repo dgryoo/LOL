@@ -10,7 +10,7 @@ public abstract class AttackableRevivableMovableThing extends AttackableRevivabl
 
     @Override
     public void move(int direction) {
-        System.out.println("x : " +this.getX() + "y : " +this.getY());
+
         switch (direction) {
             case 1:
                 this.setX(this.getX() - 1);
