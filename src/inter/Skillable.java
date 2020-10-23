@@ -2,5 +2,5 @@ package inter;
 
 public interface Skillable {
 
-    Skill skillAttack();
+    Skill skillActivate();
 }

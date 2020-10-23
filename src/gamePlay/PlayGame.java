@@ -42,6 +42,10 @@ public class PlayGame {
         Hero SuperPower = new SuperPower(TeamEnum.NEUTRAL);
         Ash Ash2 = new Ash(TeamEnum.NEUTRAL);
 
+        // SkillTest
+        Skill testSkill = new Skill("SkillTest", "p", "r", 100, 1000);
+        SuperPower.setSkill(testSkill);
+
         List<Hero> selectHeroList = new ArrayList<>();
         selectHeroList.add(Ash);
         selectHeroList.add(Echo);
@@ -53,10 +57,11 @@ public class PlayGame {
         // 영웅선택
         game.selectHero(selectHeroList, scanner);
 
+        Thread.sleep(1000);
         System.out.print("3 ");
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         System.out.print("2 ");
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         System.out.print("1 ");
 
 

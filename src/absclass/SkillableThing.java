@@ -12,11 +12,6 @@ public abstract class SkillableThing extends Thing implements Skillable {
     }
 
 
-    @Override
-    public Skill skillAttack() {
-        return skill;
-    }
-
     public Skill getSkill() {
         return skill;
     }
@@ -24,5 +19,10 @@ public abstract class SkillableThing extends Thing implements Skillable {
     public void setSkill(Skill skill) {
         this.skill = skill;
         System.out.println(gettName() + "이 " + skill.getSkillName() + "스킬을 사용했다.");
+    }
+
+    @Override
+    public Skill skillActivate() {
+        return skill;
     }
 }

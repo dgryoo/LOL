@@ -13,12 +13,13 @@ public abstract class AttackableRevivableMovableSkillableThing extends Attackabl
     }
 
     @Override
-    public Skill skillAttack() {
+    public Skill skillActivate() {
         return skill;
     }
 
-    public Skill getSkill() {
-        return skill;
+    @Override
+    public void skillAttacked(int power, String damageType) {
+        super.skillAttacked(power, damageType);
     }
 
     public void setSkill(Skill skill) {

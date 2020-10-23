@@ -2,8 +2,11 @@ package gamePlay;
 
 import absclass.AttackableRevivableMovableSkillableThing;
 import absclass.TeamEnum;
+import absclass.Thing;
 import hero.*;
 import inter.Skill;
+import inter.SkillAttackedable;
+import inter.Skillable;
 import manager.RevivableManager;
 
 import java.util.*;
@@ -51,7 +54,7 @@ public class Game {
 
     }
 
-    public void selectHero(List<Hero> heroSelectList ,Scanner scanner) {
+    public void selectHero(List<Hero> heroSelectList, Scanner scanner) {
         // 영웅선택순서를 위한 변수 int heroSelectTurn
         int heroSelectTurn = 1;
 
@@ -90,7 +93,7 @@ public class Game {
             System.out.println("------------------------------------------");
 
             // 선택 할 수 있는 영웅목록
-            heroSelectList.stream().forEach(hero -> System.out.println((heroSelectList.indexOf(hero)+1) + ". " + hero.gettName()));
+            heroSelectList.stream().forEach(hero -> System.out.println((heroSelectList.indexOf(hero) + 1) + ". " + hero.gettName()));
 
             System.out.println("------------------------------------------");
 
@@ -100,14 +103,14 @@ public class Game {
             while (!((heroSelection >= 1) && (heroSelection <= heroSelectList.size()))) {
                 System.out.println("번호를 잘 보고 다시 입력해 주세요.");
 
-                heroSelectList.stream().forEach(hero -> System.out.println((heroSelectList.indexOf(hero)+1) + ". " + hero.gettName()));
+                heroSelectList.stream().forEach(hero -> System.out.println((heroSelectList.indexOf(hero) + 1) + ". " + hero.gettName()));
                 System.out.print("번호 : ");
                 heroSelection = scanner.nextInt();
 
 
             }
             // 메소드의 변수로 받은 heroSelectList에서 영웅 불러옴
-            Hero selectedHero = heroSelectList.get(heroSelection-1);
+            Hero selectedHero = heroSelectList.get(heroSelection - 1);
 
             // 영웅의 팀 현재 선택팀으로 바꿔줌
             selectedHero.setTeam(recentSelectTeam.getTeamEnum());
@@ -121,7 +124,7 @@ public class Game {
 
 
     }
-    // TODO playRound, selectHeroActivity, isAttackable, SkillManagement, HeroActivity 정리
+
     public void playRound(Scanner scanner, Team attackTeam, Team defendTeam) {
 
         //checkToRevive
@@ -189,31 +192,44 @@ public class Game {
                 break;
 
             case SKILL:
-                System.out.println("공격할 대상을 정해주세요.");
-                System.out.println("------------------------------------------");
-                for (Hero hero : defendHeros) {
-                    System.out.println((defendHeros.indexOf(hero) + 1) + ". " + hero.gettName() + " health : " + hero.getHealth());
-                }
+                if(recentHero.skillActivate().getSkillType() == "r") {
+                    System.out.println("시전지역을 정해주세요");
+                    System.out.print("x : ");
+                    int x = scanner.nextInt();
+                    System.out.print("y : ");
+                    int y = scanner.nextInt();
+                    skillManagement(recentHero,x,y);
 
-                while (true) {
-                    System.out.print("공격대상 : ");
-                    int target = scanner.nextInt();
-                    if (isAttackable(target, defendHeros.size())) {
-                        if (recentHero.isAttack(defendHeros.get(target - 1))) {
-                            skillAttackedManagement(recentHero, defendHeros.get(target - 1));
-                            System.out.println(recentHero);
-                            break;
-                        } else {
-                            System.out.println("사정거리가 안됩니다.");
-                        }
+                    break;
 
-                    } else {
-                        System.out.println("공격대상을 다시 지정해 주세요.");
+                } else {
+                    System.out.println("공격할 대상을 정해주세요.");
+                    System.out.println("------------------------------------------");
+                    for (Hero hero : defendHeros) {
+                        System.out.println((defendHeros.indexOf(hero) + 1) + ". " + hero.gettName() + " health : " + hero.getHealth());
                     }
+
+                    while (true) {
+                        System.out.print("공격대상 : ");
+                        int target = scanner.nextInt();
+                        if (isAttackable(target, defendHeros.size())) {
+                            if (recentHero.isAttack(defendHeros.get(target - 1))) {
+                                skillManagement(recentHero, defendHeros.get(target - 1));
+                                System.out.println(recentHero);
+                                break;
+                            } else {
+                                System.out.println("사정거리가 안됩니다.");
+                            }
+
+                        } else {
+                            System.out.println("공격대상을 다시 지정해 주세요.");
+                        }
+                    }
+
+                    break;
                 }
 
-                break;
-//TODO Move 되는지 확인
+
             case MOVE:
                 System.out.print("방향을 입력해주세요 :");
                 int direction = scanner.nextInt();
@@ -236,17 +252,25 @@ public class Game {
         return target > 0 && target <= numOfHeros;
     }
 
-    private void skillAttackedManagement(AttackableRevivableMovableSkillableThing attacker, AttackableRevivableMovableSkillableThing attackeder) {
-        //TODO 스킬 맞는거 관리하는 메소드
-        Skill recentSkill = attacker.getSkill();
-        int recentSkillPower = recentSkill.getSkillPower();
-        String recentSkillType = recentSkill.getDamageType();
+    private void skillManagement(Skillable skillable, SkillAttackedable skillAttackedable) {
 
-        if (recentSkillType == "physical") {
-            attackeder.skillAttacked(recentSkillPower - attackeder.getMagicArmor());
-        } else {
-            attackeder.skillAttacked(recentSkillPower - attackeder.getArmor());
-        }
+        skillAttackedable.skillAttacked(skillable.skillActivate().getSkillPower(), skillable.skillActivate().getDamageType());
+
+    }
+
+    private void skillManagement(Skillable skillable, int x, int y) {
+
+        List<Thing> skillAttackedableList = new ArrayList<>();
+        skillAttackedableList.addAll(blue.getHeroList());
+        skillAttackedableList.addAll(blue.getMinionList());
+        skillAttackedableList.addAll(red.getHeroList());
+        skillAttackedableList.addAll(red.getMinionList());
+//TODO List 문제 해결해야함
+        List<SkillAttackedable> skillAttackedList = (List<SkillAttackedable>) skillAttackedableList
+                .stream()
+                .filter(thing -> Math.sqrt(Math.pow(x - thing.getX(), 2) + Math.pow(y - thing.getY(), 2)) <= skillable.skillActivate().getSkillRange());
+
+        skillAttackedList.stream().forEach(thing -> thing.skillAttacked(skillable.skillActivate().getSkillPower(), skillable.skillActivate().getDamageType()));
 
     }
 

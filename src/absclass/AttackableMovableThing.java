@@ -16,8 +16,20 @@ public abstract class AttackableMovableThing extends AttackableThing implements 
     }
 
     @Override
-    public void skillAttacked(int power) {
-        setHealth(getHealth() - power);
-        System.out.println(gettName()+"이 스킬을맞았다");
+    public void skillAttacked(int power, String damageType) {
+        if (damageType == "p") {
+            setHealth(getHealth() + getArmor() - power);
+            System.out.println(gettName() + "가 물리스킬공격받음");
+        } else {
+            setHealth(getHealth() + getMagicArmor() - power);
+            System.out.println(gettName() + "가 마법스킬공격받음");
+        }
+
+        if (getHealth() > 0) {
+            System.out.println(gettName() + "의 체력은 " + getHealth() + " 남았습니다");
+        } else {
+            dead();
+        }
+
     }
 }

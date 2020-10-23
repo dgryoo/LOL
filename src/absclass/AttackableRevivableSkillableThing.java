@@ -17,12 +17,6 @@ public abstract class AttackableRevivableSkillableThing extends AttackableReviva
 //        return skill.getSkillPower();
 //    }
 
-
-    @Override
-    public Skill skillAttack() {
-        return skill;
-    }
-
     public Skill getSkill() {
         return skill;
     }
