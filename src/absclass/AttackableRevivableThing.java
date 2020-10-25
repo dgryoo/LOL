@@ -5,8 +5,8 @@ import manager.RevivableManager;
 
 public abstract class AttackableRevivableThing extends AttackableThing implements Revivable {
 
-    public AttackableRevivableThing(String tName, int health, TeamEnum team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
-        super(tName, health, team, armor, magicArmor, power, attackRange, x, y);
+    public AttackableRevivableThing(String tName, int health, TeamEnum team, int armor, int magicArmor, int power, int attackRange) {
+        super(tName, health, team, armor, magicArmor, power, attackRange);
     }
 
     @Override

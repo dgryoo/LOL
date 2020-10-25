@@ -5,10 +5,9 @@ import inter.SkillAttackedable;
 
 public abstract class AttackableRevivableMovableThing extends AttackableRevivableThing implements Movable, SkillAttackedable {
 
-    public AttackableRevivableMovableThing(String tName, int health, TeamEnum team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
-        super(tName, health, team, armor, magicArmor, power, attackRange, x, y);
+    public AttackableRevivableMovableThing(String tName, int health, TeamEnum team, int armor, int magicArmor, int power, int attackRange) {
+        super(tName, health, team, armor, magicArmor, power, attackRange);
     }
-
 
     @Override
     public void skillAttacked(int power, String damageType) {

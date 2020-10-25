@@ -1,13 +1,13 @@
 package gamePlay;
 
-import absclass.AttackableRevivableMovableSkillableThing;
 import absclass.TeamEnum;
 import absclass.Thing;
-import hero.*;
-import inter.Skill;
+import unit.hero.*;
 import inter.SkillAttackedable;
 import inter.Skillable;
+
 import manager.RevivableManager;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
 
@@ -192,13 +192,13 @@ public class Game {
                 break;
 
             case SKILL:
-                if(recentHero.skillActivate().getSkillType() == "r") {
+                if (recentHero.skillActivate().getSkillType() == "r") {
                     System.out.println("시전지역을 정해주세요");
                     System.out.print("x : ");
                     int x = scanner.nextInt();
                     System.out.print("y : ");
                     int y = scanner.nextInt();
-                    skillManagement(recentHero,x,y);
+                    skillManagement(recentHero, x, y);
 
                     break;
 
@@ -265,14 +265,21 @@ public class Game {
         skillAttackedableList.addAll(blue.getMinionList());
         skillAttackedableList.addAll(red.getHeroList());
         skillAttackedableList.addAll(red.getMinionList());
-//TODO List 문제 해결해야함
-        List<SkillAttackedable> skillAttackedList = (List<SkillAttackedable>) skillAttackedableList
-                .stream()
-                .filter(thing -> Math.sqrt(Math.pow(x - thing.getX(), 2) + Math.pow(y - thing.getY(), 2)) <= skillable.skillActivate().getSkillRange());
 
-        skillAttackedList.stream().forEach(thing -> thing.skillAttacked(skillable.skillActivate().getSkillPower(), skillable.skillActivate().getDamageType()));
+        skillAttackedableList
+                .stream()
+                .filter(thing -> thing instanceof SkillAttackedable)
+                .map(thing -> (SkillAttackedable) thing)
+                .filter(skillAttackedable -> getRange((Thing) skillable, x, y) <= skillable.skillActivate().getSkillRange())
+                .forEach(thing -> thing.skillAttacked(skillable.skillActivate().getSkillPower(), skillable.skillActivate().getDamageType()));
 
     }
 
+    private double getRange(Thing thing, int x, int y) {
+        return getRange(Pair.of(thing.getX(),thing.getY()), Pair.of(x,y));
+    }
 
+    private double getRange(Pair<Integer, Integer> from, Pair<Integer,Integer> to) {
+        return Math.sqrt(Math.pow(from.getLeft() - to.getLeft(), 2) + Math.pow(from.getRight() - to.getRight(), 2));
+    }
 }

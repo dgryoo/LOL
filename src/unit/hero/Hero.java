@@ -1,4 +1,4 @@
-package hero;
+package unit.hero;
 
 import absclass.AttackableRevivableMovableSkillableThing;
 import absclass.TeamEnum;
@@ -10,8 +10,8 @@ public abstract class Hero extends AttackableRevivableMovableSkillableThing {
 
 
 
-    public Hero(String tName, int health, TeamEnum team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
-        super(tName, health, team, armor, magicArmor, power, attackRange, x, y);
+    public Hero(String tName, int health, TeamEnum team, int armor, int magicArmor, int power, int attackRange) {
+        super(tName, health, team, armor, magicArmor, power, attackRange);
         this.level = 1;
         this.experience = 0;
     }

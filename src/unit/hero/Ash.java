@@ -1,15 +1,16 @@
-package hero;
+package unit.hero;
 
 import absclass.TeamEnum;
 
-public class SuperPower extends Hero {
+public class Ash extends Hero {
 
-    public SuperPower(TeamEnum team) {
-        super("SuperPower", 300, team, 50, 50, 100,8, 0,0);
+    //private static Ash ash;
+
+    public Ash(TeamEnum team) {
+        super("Ash", 100, team, 10, 10, 20, 20);
+
 
     }
-
-
 
     /*public static Ash getInstance(gamePlay.Team team) {
         if (ash == null) {

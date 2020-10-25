@@ -1,14 +1,13 @@
-package hero;
+package unit.hero;
 
 import absclass.TeamEnum;
 
-public class Ash extends Hero {
+public class Leeshin extends Hero {
 
     //private static Ash ash;
 
-    public Ash(TeamEnum team) {
-        super("Ash", 100, team, 10, 10, 20, 20, 0, 0);
-
+    public Leeshin(TeamEnum team) {
+        super("Leeshin", 120, team, 15, 15, 30, 15);
 
     }
 

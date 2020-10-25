@@ -18,7 +18,7 @@ Gamer 클래스 리팩토링완료 Gamer -> gamePlay.Team
 - absclass.AttackableRevivableThing extends absclass.AttackableThing implements inter.Revivable - 없음
 - ARSTHing extends ARTHing implements inter.Skillable - Dragon
 - absclass.AttackableRevivableMovableThing extends absclass.AttackableRevivableThing implements inter.Movable - Wolf
-- absclass.AttackableRevivableMovableSkillableThing extends absclass.AttackableRevivableMovableThing implements inter.Skillable - hero, Golem
+- absclass.AttackableRevivableMovableSkillableThing extends absclass.AttackableRevivableMovableThing implements inter.Skillable - unit.hero, Golem
 
 A <- AM
   <- AR <- ARS <- ARMS
@@ -41,7 +41,7 @@ S
 - Minion extends absclass.AttackableMovableThing
     CommandTower에서 생성하는 쫄따구
 
-- hero extends absclass.AttackableRevivableMovableSkillableThing
+- unit.hero extends absclass.AttackableRevivableMovableSkillableThing
     영웅을 싱글톤으로 하나만 생성하는기능 추가
 
 - Wolf extends absclass.AttackableRevivableMovableThing
@@ -96,9 +96,9 @@ S
 * Gamer가 영웅선택시에 이미 선택된 영웅이 또 선택되지 않도록 (1)
 
     - Hero를 SingleTone 객체로 생성해도 의미가 없음
-    - Map<String, hero> HeroSelectMap을 만들어서 ("Ash", Ash instance)로 저장
+    - Map<String, unit.hero> HeroSelectMap을 만들어서 ("Ash", Ash instance)로 저장
       문제점 : Hero는 new 할때 변수 gamePlay.Team team을 필요로함
-      해결방안 : 1. 우선 new hero(gamePlay.Team.NEUTRAL)로 생성 후 setTeam(Gamer.getTeam())으로 Team을 변경
+      해결방안 : 1. 우선 new unit.hero(gamePlay.Team.NEUTRAL)로 생성 후 setTeam(Gamer.getTeam())으로 Team을 변경
                 2. 갈아엎는다.
 
 @ issue

@@ -1,4 +1,4 @@
-package hero;
+package unit.hero;
 
 import absclass.TeamEnum;
 
@@ -7,7 +7,7 @@ public class Zed extends Hero {
     //private static Ash ash;
 
     public Zed(TeamEnum team) {
-        super("Zed", 80, team, 10, 10, 40,10,0,0);
+        super("Zed", 80, team, 10, 10, 40,10);
 
     }
 

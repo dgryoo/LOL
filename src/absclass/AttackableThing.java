@@ -7,8 +7,8 @@ public abstract class AttackableThing extends Thing implements Attackable {
     int attackRange;
 
 
-    public AttackableThing(String tName, int health, TeamEnum team, int armor, int magicArmor, int power, int attackRange, int x, int y) {
-        super(tName, health, team, armor, magicArmor, x, y);
+    public AttackableThing(String tName, int health, TeamEnum team, int armor, int magicArmor, int power, int attackRange) {
+        super(tName, health, team, armor, magicArmor);
         this.power = power;
         this.attackRange = attackRange;
     }

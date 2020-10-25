@@ -1,5 +1,8 @@
 package absclass;
 
+import manager.LocationUtil;
+import org.apache.commons.lang3.tuple.Pair;
+
 public abstract class Thing {
     private String tName;
     private int maxHealth;
@@ -11,15 +14,15 @@ public abstract class Thing {
     private int y;
     private boolean state = true;
 
-
-    Thing(String tName, int health, TeamEnum team, int armor, int magicArmor, int x, int y) {
+    Thing(String tName, int health, TeamEnum team, int armor, int magicArmor) {
+        Pair<Integer, Integer> pair = LocationUtil.getBaseLocation(team, this.getClass());
         this.tName = tName;
         this.health = health;
         this.team = team;
         this.armor = armor;
         this.magicArmor = magicArmor;
-        this.x = x;
-        this.y = y;
+        this.x = pair.getLeft();
+        this.y = pair.getRight();
         this.maxHealth = health;
 
 

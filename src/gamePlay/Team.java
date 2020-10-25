@@ -2,10 +2,10 @@ package gamePlay;
 
 import absclass.TeamEnum;
 import defaultThing.CommandTower;
-import defaultThing.Minion;
+import unit.Minion;
 import defaultThing.SuppressTower;
 import defaultThing.TurretTower;
-import hero.Hero;
+import unit.hero.Hero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,7 @@ public class Team {
     public Team(TeamEnum teamEnum) {
         this.teamEnum = teamEnum;
         this.commandTower = new CommandTower(teamEnum);
+        System.out.println(commandTower);
         this.suppressTower = new SuppressTower(teamEnum);
         this.turretTower = new TurretTower(teamEnum);
     }

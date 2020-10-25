@@ -1,15 +1,15 @@
-package hero;
+package unit.hero;
 
 import absclass.TeamEnum;
 
-public class Leeshin extends Hero {
+public class SuperPower extends Hero {
 
-    //private static Ash ash;
-
-    public Leeshin(TeamEnum team) {
-        super("Leeshin", 120, team, 15, 15, 30, 15, 0,0);
+    public SuperPower(TeamEnum team) {
+        super("SuperPower", 300, team, 50, 50, 100,8);
 
     }
+
+
 
     /*public static Ash getInstance(gamePlay.Team team) {
         if (ash == null) {

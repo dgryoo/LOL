@@ -7,8 +7,8 @@ public abstract class SkillableThing extends Thing implements Skillable {
 
     Skill skill;
 
-    public SkillableThing(String tName, int health, TeamEnum team, int armor, int magicArmor, int x, int y) {
-        super(tName, health, team, armor, magicArmor, x, y);
+    public SkillableThing(String tName, int health, TeamEnum team, int armor, int magicArmor) {
+        super(tName, health, team, armor, magicArmor);
     }
 
 
