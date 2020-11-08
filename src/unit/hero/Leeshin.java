@@ -1,6 +1,8 @@
 package unit.hero;
 
-import absclass.TeamEnum;
+import action.attack.attacks.LeeshinAttack;
+import basicClass.Hero;
+import basicClass.TeamEnum;
 
 public class Leeshin extends Hero {
 
@@ -8,10 +10,10 @@ public class Leeshin extends Hero {
 
     public Leeshin(TeamEnum team) {
         super("Leeshin", 120, team, 15, 15, 30, 15);
-
+        setAttack(new LeeshinAttack());
     }
 
-    /*public static Ash getInstance(gamePlay.Team team) {
+    /*public static Ash getInstance(basicClass.Team team) {
         if (ash == null) {
             ash = new Ash(team);
             return ash;

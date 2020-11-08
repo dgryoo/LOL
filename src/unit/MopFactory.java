@@ -1,11 +1,11 @@
 package unit;
 
-import absclass.AttackableMovableThing;
-import absclass.TeamEnum;
+import basicClass.TeamEnum;
+import unit.minion.Minion;
 
 public class MopFactory {
 
-    public static AttackableMovableThing createMinion(TeamEnum teamEnum) {
+    public static Minion createMinion(TeamEnum teamEnum) {
         return new Minion(teamEnum);
     }
 

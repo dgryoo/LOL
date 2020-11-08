@@ -1,10 +1,12 @@
 package gamePlay;
 
-import absclass.TeamEnum;
+import basicClass.Hero;
+import basicClass.TeamEnum;
 import unit.hero.*;
-import inter.Skill;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class PlayGame {
 
@@ -39,10 +41,6 @@ public class PlayGame {
         Hero SuperPower = new SuperPower(TeamEnum.NEUTRAL);
         Ash Ash2 = new Ash(TeamEnum.NEUTRAL);
 
-        // SkillTest
-        Skill testSkill = new Skill("SkillTest", "p", "r", 100, 1000);
-        SuperPower.setSkill(testSkill);
-
         List<Hero> selectHeroList = new ArrayList<>();
         selectHeroList.add(Ash);
         selectHeroList.add(Echo);
@@ -62,7 +60,6 @@ public class PlayGame {
         System.out.print("1 ");
 
 
-
         System.out.println("게임이 시작됩니다.");
 
         // Gamer1/2 를 구분하기위해 turn 생성
@@ -71,21 +68,13 @@ public class PlayGame {
         while (!game.getBlue().getCommandTower().isVictory() || !game.getRed().getCommandTower().isVictory()) {
 
             if (turn) {
-                game.playRound(scanner, game.getBlue(),game.getRed());
+                game.playRound(scanner, game.getBlue(), game.getRed());
             } else {
-                game.playRound(scanner, game.getRed(),game.getBlue());
+                game.playRound(scanner, game.getRed(), game.getBlue());
             }
 
             turn = !turn;
         }
-
-
-
-
-
-
-
-
 
 
     }

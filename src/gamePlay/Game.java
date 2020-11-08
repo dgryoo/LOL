@@ -1,15 +1,19 @@
 package gamePlay;
 
-import absclass.TeamEnum;
-import absclass.Thing;
-import unit.hero.*;
-import inter.SkillAttackedable;
-import inter.Skillable;
-
-import manager.RevivableManager;
+import action.skill.Skillable;
+import action.skilled.Skilledable;
+import basicClass.HeroActivity;
+import basicClass.Team;
+import basicClass.TeamEnum;
+import basicClass.Thing;
+import manager.revive.RevivableManager;
 import org.apache.commons.lang3.tuple.Pair;
+import basicClass.Hero;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class Game {
 
@@ -133,19 +137,26 @@ public class Game {
 
         // 돌아가면서 한턴씩 실행
         System.out.println(attackTeam.getUserName() + "님의 차례입니다.");
-
         System.out.println("영웅을 선택해주세요");
-        // 영웅선택
-        for (Hero hero : attackTeam.getAliveHeroList()) {
-            System.out.println((attackTeam.getAliveHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
-        }
-        int selectHero = scanner.nextInt();
-        Hero recentHero = attackTeam.getAliveHeroList().get(selectHero - 1);
 
+
+        // 영웅선택
+        Hero recentHero;
+        
+        while (true) {
+            for (Hero hero : attackTeam.getAliveHeroList()) {
+                System.out.println((attackTeam.getAliveHeroList().indexOf(hero) + 1) + ". " + hero.gettName());
+            }
+            int selectHero = scanner.nextInt();
+            if (targetCheck(selectHero, attackTeam.getAliveHeroList().size())) {
+                recentHero = attackTeam.getAliveHeroList().get(selectHero - 1);
+                break;
+            } else {
+                System.out.println("번호를 정확히 입력하세요.");
+            }
+        }
         // 영웅의 행동 선택
         selectHeroActivity(scanner, recentHero, defendTeam.getAliveHeroList());
-
-
     }
 
     private void selectHeroActivity(Scanner scanner, Hero recentHero, List<Hero> defendHeros) {
@@ -176,9 +187,9 @@ public class Game {
                 while (true) {
                     System.out.print("공격대상 : ");
                     int target = scanner.nextInt();
-                    if (isAttackable(target, defendHeros.size())) {
+                    if (targetCheck(target, defendHeros.size())) {
                         if (recentHero.isAttack(defendHeros.get(target - 1))) {
-                            recentHero.attack(defendHeros.get(target - 1));
+                            recentHero.attackinit(defendHeros.get(target - 1));
                             System.out.println(recentHero);
                             break;
                         } else {
@@ -192,7 +203,7 @@ public class Game {
                 break;
 
             case SKILL:
-                if (recentHero.skillActivate().getSkillType() == "r") {
+                if (recentHero.getSkill().getSkillType() == "r") {
                     System.out.println("시전지역을 정해주세요");
                     System.out.print("x : ");
                     int x = scanner.nextInt();
@@ -212,7 +223,7 @@ public class Game {
                     while (true) {
                         System.out.print("공격대상 : ");
                         int target = scanner.nextInt();
-                        if (isAttackable(target, defendHeros.size())) {
+                        if (targetCheck(target, defendHeros.size())) {
                             if (recentHero.isAttack(defendHeros.get(target - 1))) {
                                 skillManagement(recentHero, defendHeros.get(target - 1));
                                 System.out.println(recentHero);
@@ -247,39 +258,40 @@ public class Game {
         }
     }
 
-    private static boolean isAttackable(int target, int numOfHeros) {
+    private static boolean targetCheck(int target, int numOfHeros) {
 
         return target > 0 && target <= numOfHeros;
     }
 
-    private void skillManagement(Skillable skillable, SkillAttackedable skillAttackedable) {
+    private void skillManagement(Skillable skillable, Skilledable skilledable) {
 
-        skillAttackedable.skillAttacked(skillable.skillActivate().getSkillPower(), skillable.skillActivate().getDamageType());
+        skillable.skillInit(skilledable);
 
     }
 
     private void skillManagement(Skillable skillable, int x, int y) {
 
-        List<Thing> skillAttackedableList = new ArrayList<>();
-        skillAttackedableList.addAll(blue.getHeroList());
-        skillAttackedableList.addAll(blue.getMinionList());
-        skillAttackedableList.addAll(red.getHeroList());
-        skillAttackedableList.addAll(red.getMinionList());
+        List<Thing> skilledList = new ArrayList<>();
+        skilledList.addAll(blue.getHeroList());
+        skilledList.addAll(blue.getMinionList());
+        skilledList.addAll(red.getHeroList());
+        skilledList.addAll(red.getMinionList());
 
-        skillAttackedableList
+        skilledList
                 .stream()
-                .filter(thing -> thing instanceof SkillAttackedable)
-                .map(thing -> (SkillAttackedable) thing)
-                .filter(skillAttackedable -> getRange((Thing) skillable, x, y) <= skillable.skillActivate().getSkillRange())
-                .forEach(thing -> thing.skillAttacked(skillable.skillActivate().getSkillPower(), skillable.skillActivate().getDamageType()));
+                .filter(thing -> thing instanceof Skilledable)
+                .filter(thing -> getRange(thing, x, y) <= skillable.getSkill().getSkillRange())
+                .map(thing -> (Skilledable) thing)
+                .forEach(skilledable -> skilledable.skilled(skillable.getSkill().getSkillPower()));
 
     }
 
     private double getRange(Thing thing, int x, int y) {
-        return getRange(Pair.of(thing.getX(),thing.getY()), Pair.of(x,y));
+        return getRange(Pair.of(thing.getX(), thing.getY()), Pair.of(x, y));
     }
 
-    private double getRange(Pair<Integer, Integer> from, Pair<Integer,Integer> to) {
+    private double getRange(Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
         return Math.sqrt(Math.pow(from.getLeft() - to.getLeft(), 2) + Math.pow(from.getRight() - to.getRight(), 2));
     }
+
 }

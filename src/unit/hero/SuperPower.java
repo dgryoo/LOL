@@ -1,17 +1,20 @@
 package unit.hero;
 
-import absclass.TeamEnum;
+import action.attack.attacks.SuperPowerAttack;
+import basicClass.Hero;
+import basicClass.TeamEnum;
 
 public class SuperPower extends Hero {
 
     public SuperPower(TeamEnum team) {
         super("SuperPower", 300, team, 50, 50, 100,8);
+        setAttack(new SuperPowerAttack());
 
     }
 
 
 
-    /*public static Ash getInstance(gamePlay.Team team) {
+    /*public static Ash getInstance(basicClass.Team team) {
         if (ash == null) {
             ash = new Ash(team);
             return ash;

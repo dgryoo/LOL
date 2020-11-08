@@ -1,6 +1,8 @@
 package unit.hero;
 
-import absclass.TeamEnum;
+import action.attack.attacks.ZedAttack;
+import basicClass.Hero;
+import basicClass.TeamEnum;
 
 public class Zed extends Hero {
 
@@ -8,10 +10,10 @@ public class Zed extends Hero {
 
     public Zed(TeamEnum team) {
         super("Zed", 80, team, 10, 10, 40,10);
-
+        setAttack(new ZedAttack());
     }
 
-    /*public static Ash getInstance(gamePlay.Team team) {
+    /*public static Ash getInstance(basicClass.Team team) {
         if (ash == null) {
             ash = new Ash(team);
             return ash;

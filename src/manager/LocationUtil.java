@@ -1,9 +1,8 @@
 package manager;
 
-import absclass.TeamEnum;
-import absclass.Thing;
-import defaultThing.SuppressTower;
-import defaultThing.TurretTower;
+import basicClass.TeamEnum;
+import tower.SuppressTower;
+import tower.TurretTower;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class LocationUtil {
